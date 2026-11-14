@@ -212,6 +212,34 @@ tfoot th{background:#4c350b;color:#ffe08a;border-color:#a17a26}
 @media(max-width:1050px){.mast-inner{grid-template-columns:1fr 1.3fr}.period-box{grid-column:1/-1;justify-self:start}.cards{grid-template-columns:repeat(3,1fr)}.filters{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.mast-inner{grid-template-columns:1fr}.mast-title{border-left:0;padding-left:0}.period-box{grid-column:auto}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.filters{grid-template-columns:1fr}.wrap{padding:10px 8px}}
 
+
+/* REFINED PREMIUM CONTROL-CENTER LAYOUT */
+.hero-intro{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 18px;margin:0 0 14px;border:1px solid #56313a;border-radius:16px;background:linear-gradient(105deg,#45101a 0%,#21151d 55%,#151c27 100%);box-shadow:0 12px 28px #0005}
+.hero-intro .eyebrow{font-size:10px;letter-spacing:1.5px;font-weight:900;color:#efc65f}
+.hero-intro h2{font-size:19px;margin:5px 0 3px;color:#fff}
+.hero-intro p{font-size:11px;color:#c5c0c7;margin:0;line-height:1.5}
+.hero-intro .hero-mark{font-size:36px;filter:drop-shadow(0 0 12px #e7bd6355);padding:0 10px}
+.metric-card{display:flex;align-items:center;gap:13px;min-height:112px;position:relative;overflow:hidden}
+.metric-icon{width:48px;height:48px;flex:0 0 48px;border-radius:15px;display:grid;place-items:center;font-size:23px;background:#ffffff12;border:1px solid #ffffff18}
+.metric-copy{min-width:0}
+.metric-card .k{font-size:10px;white-space:normal}
+.metric-card .n{font-size:clamp(25px,2.6vw,37px);margin:6px 0 3px}
+.metric-card .desc{font-size:10px}
+.metric-card.total-card .metric-icon{background:#e8bd3e22;color:#ffe18a}
+.metric-card:nth-child(2) .metric-icon{background:#2389f522;color:#69a5ff}
+.metric-card:nth-child(3) .metric-icon{background:#ff8b1f22;color:#ffad62}
+.metric-card:nth-child(4) .metric-icon{background:#ed354822;color:#ff6875}
+.metric-card:nth-child(5) .metric-icon{background:#24b84e22;color:#50d6a5}
+.metric-card:nth-child(6) .metric-icon{background:#a43be022;color:#c7a0ff}
+.analytics-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:15px;margin:0 0 16px}
+.analytics-grid .panel{margin:0}
+.analytics-grid .status-distribution{margin:0!important}
+.analytics-grid .tablewrap{max-height:330px}
+.panelhead .heading-icon{font-size:18px;margin-right:5px}
+.field label{display:flex;align-items:center;gap:6px}
+@media(max-width:1050px){.analytics-grid{grid-template-columns:1fr}}
+@media(max-width:760px){.hero-intro{padding:13px}.hero-intro h2{font-size:16px}.metric-card{min-height:92px;gap:8px;padding:11px}.metric-icon{width:38px;height:38px;flex-basis:38px;font-size:19px;border-radius:12px}.metric-card .n{font-size:25px}}
+
 </style></head><body>
 <header class="masthead"><div class="mast-inner">
 <div class="brand"><div class="logo">🚀</div><div><div class="brandname">MORAREPUBLIC</div><div class="sub">SURABAYA 2</div></div></div>
@@ -220,34 +248,30 @@ tfoot th{background:#4c350b;color:#ffe08a;border-color:#a17a26}
 </div></header>
 <main class="wrap">
 <nav class="tabs"><a href="../">Performa SA / SA Unpaid</a><a href="../cluster-tanggung-jawab/">Cluster Tanggung Jawab</a><a class="active" href="./">Monitoring WO</a></nav>
+<div class="hero-intro"><div><div class="eyebrow">MORAREPUBLIC · SURABAYA 2</div><h2>Work Order Performance Overview</h2><p>Pantau status appointment, produktivitas ASM, dan detail work order dalam satu tampilan.</p></div><div class="hero-mark">🚀</div></div>
 <div class="topline"><div class="status" id="syncStatus">Menghubungkan ke Google Sheets…</div><div class="actions"><button class="secondary" id="refreshBtn">↻ Refresh</button></div></div>
 <div id="errorBox" class="error"></div>
 
 <div class="section-kicker">FILTER DATA APPOINTMENT</div>
-<div class="filters"><div class="field"><label for="dateFrom">APPOINTMENT DATE MULAI</label><input type="date" id="dateFrom"></div><div class="field"><label for="dateTo">APPOINTMENT DATE SAMPAI</label><input type="date" id="dateTo"></div><div class="field"><label for="bsmFilter">FILTER BSM</label><select id="bsmFilter"><option value="">Memuat BSM…</option></select></div><div class="field"><label for="asmFilter">FILTER ASM</label><select id="asmFilter"><option value="">Semua ASM</option></select></div><div class="field"><label for="searchInput">CARI DETAIL WO</label><input id="searchInput" placeholder="Cari Customer ID, nama pelanggan, cluster, contractor, AE…"></div></div>
-<section class="panel today-status-panel"><div class="panelhead"><h2>INFO WO BERDASARKAN APPOINTMENT DATE</h2><small id="statusTodayLabel">Status WO berdasarkan tanggal hari ini</small></div><div class="cards"><div class="card total-card"><div class="k">TOTAL WO</div><div class="n" id="kTotal">—</div><div class="desc">Total data sesuai filter</div></div>
-<div class="card"><div class="k">WO NEW</div><div class="n blue" id="kNew">—</div><div class="desc">appointmentStatus: New</div></div>
-<div class="card"><div class="k">IN PROGRESS</div><div class="n orange" id="kProgress">—</div><div class="desc">appointmentStatus: In Progress</div></div>
-<div class="card"><div class="k">UNSUCCESSFULLY</div><div class="n red" id="kUnsuccessful">—</div><div class="desc">appointmentStatus: Unsuccessful</div></div>
-<div class="card"><div class="k">SUCCESSFULLY</div><div class="n green" id="kSuccess">—</div><div class="desc">appointmentStatus: Successful</div></div>
-<div class="card"><div class="k">CANCEL</div><div class="n red" id="kCancel">—</div><div class="desc">appointmentStatus: Cancelled</div></div>
+<div class="filters"><div class="field"><label for="dateFrom">▦ APPOINTMENT DATE MULAI</label><input type="date" id="dateFrom"></div><div class="field"><label for="dateTo">▦ APPOINTMENT DATE SAMPAI</label><input type="date" id="dateTo"></div><div class="field"><label for="bsmFilter">♟ FILTER BSM</label><select id="bsmFilter"><option value="">Memuat BSM…</option></select></div><div class="field"><label for="asmFilter">♟ FILTER ASM</label><select id="asmFilter"><option value="">Semua ASM</option></select></div><div class="field"><label for="searchInput">⌕ CARI DETAIL WO</label><input id="searchInput" placeholder="Cari Customer ID, nama pelanggan, cluster, contractor, AE…"></div></div>
+<section class="panel today-status-panel"><div class="panelhead"><h2>INFO WO BERDASARKAN APPOINTMENT DATE</h2><small id="statusTodayLabel">Status WO berdasarkan tanggal hari ini</small></div><div class="cards"><div class="card metric-card total-card"><div class="metric-icon">▦</div><div class="metric-copy"><div class="k">TOTAL WO</div><div class="n" id="kTotal">—</div><div class="desc">Total data sesuai filter</div></div></div></div>
+<div class="card metric-card"><div class="metric-icon">✚</div><div class="metric-copy"><div class="k">WO NEW</div><div class="n blue" id="kNew">—</div><div class="desc">appointmentStatus: New</div></div></div>
+<div class="card metric-card"><div class="metric-icon">◷</div><div class="metric-copy"><div class="k">IN PROGRESS</div><div class="n orange" id="kProgress">—</div><div class="desc">appointmentStatus: In Progress</div></div></div>
+<div class="card metric-card"><div class="metric-icon">!</div><div class="metric-copy"><div class="k">UNSUCCESSFULLY</div><div class="n red" id="kUnsuccessful">—</div><div class="desc">appointmentStatus: Unsuccessful</div></div></div>
+<div class="card metric-card"><div class="metric-icon">✓</div><div class="metric-copy"><div class="k">SUCCESSFULLY</div><div class="n green" id="kSuccess">—</div><div class="desc">appointmentStatus: Successful</div></div></div>
+<div class="card metric-card"><div class="metric-icon">×</div><div class="metric-copy"><div class="k">CANCEL</div><div class="n red" id="kCancel">—</div><div class="desc">appointmentStatus: Cancelled</div></div></div>
 </div>
-<div class="card status-distribution" style="margin:0 16px 16px">
-  <div class="k">KOMPOSISI STATUS WO</div>
-  <div class="status-track" id="statusTrack">
-    <span style="width:0;background:#69a5ff"></span><span style="width:0;background:#ffad62"></span><span style="width:0;background:#ff6875"></span><span style="width:0;background:#50d6a5"></span><span style="width:0;background:#a78bfa"></span>
-  </div>
-  <div class="status-legend">
-    <span><i style="background:#69a5ff"></i>New</span>
-    <span><i style="background:#ffad62"></i>In Progress</span>
-    <span><i style="background:#ff6875"></i>Unsuccessful</span>
-    <span><i style="background:#50d6a5"></i>Successfully</span>
-    <span><i style="background:#a78bfa"></i>Cancel</span>
-  </div>
-</div>
+
 </section>
-<div class="section-kicker">Produktivitas tim</div>
-<section class="panel"><div class="panelhead"><h2>WO PER ASM</h2><small id="todayLabel">Tanggal hari ini</small></div><div class="tablewrap"><table style="min-width:520px"><thead><tr><th>ASM</th><th>TOTAL WO</th><th>NEW</th><th>IN PROGRESS</th><th>UNSUCCESSFUL</th><th>SUCCESSFULLY</th><th>CANCEL</th></tr></thead><tbody id="asmTodayBody"><tr><td colspan="7" class="empty">Memuat data…</td></tr></tbody><tfoot id="asmTodayFoot"></tfoot></table></div></section>
+<div class="analytics-grid">
+<section class="panel"><div class="panelhead"><h2><span class="heading-icon">▥</span>KOMPOSISI STATUS WO</h2><small>Distribusi status sesuai filter</small></div>
+<div class="card status-distribution" style="margin:0!important;border:0;box-shadow:none">
+<div class="k">KOMPOSISI STATUS WO</div>
+<div class="status-track" id="statusTrack"><span style="width:0;background:#69a5ff"></span><span style="width:0;background:#ffad62"></span><span style="width:0;background:#ff6875"></span><span style="width:0;background:#50d6a5"></span><span style="width:0;background:#a78bfa"></span></div>
+<div class="status-legend"><span><i style="background:#69a5ff"></i>New</span><span><i style="background:#ffad62"></i>In Progress</span><span><i style="background:#ff6875"></i>Unsuccessful</span><span><i style="background:#50d6a5"></i>Successfully</span><span><i style="background:#a78bfa"></i>Cancel</span></div></div></section>
+<section class="panel"><div class="panelhead"><h2><span class="heading-icon">♟</span>WO PER ASM</h2><small id="todayLabel">Mengikuti filter Appointment Date</small></div>
+<div class="tablewrap"><table style="min-width:520px"><thead><tr><th>ASM</th><th>TOTAL WO</th><th>NEW</th><th>IN PROGRESS</th><th>UNSUCCESSFUL</th><th>SUCCESSFULLY</th><th>CANCEL</th></tr></thead><tbody id="asmTodayBody"><tr><td colspan="7" class="empty">Memuat data…</td></tr></tbody><tfoot id="asmTodayFoot"></tfoot></table></div></section>
+</div>
 <div class="section-kicker">Rincian dan pencarian work order</div>
 <section class="panel"><div class="panelhead"><h2>DETAIL WORK ORDER</h2><small id="detailCount">0 data</small></div><div class="tablewrap"><table><thead><tr>
 <th class="sortable" data-sort="customerId">Customer ID <span class="sortmark"></span></th>
