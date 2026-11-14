@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache"><title>Monitoring WO | MoraRepublic Surabaya 2</title>
+<style>
+:root{--bg:#f3f6fb;--card:#fff;--ink:#14213d;--muted:#718096;--line:#e7edf5;--navy:#101d35;--gold:#d6a84b;--blue:#3478f6;--orange:#f07832;--red:#dc3e4d;--green:#159b72;--shadow:0 12px 32px rgba(21,39,72,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--ink)}
+header{background:linear-gradient(120deg,#101d35,#1b3154);color:#fff;padding:24px max(18px,calc((100% - 1500px)/2))}
+.brand{display:flex;align-items:center;gap:13px}.logo{width:46px;height:46px;border-radius:13px;background:var(--gold);display:grid;place-items:center;color:#14213d;font-weight:900;font-size:22px}
+h1{font-size:clamp(20px,3vw,29px);margin:0}.sub{font-size:12px;color:#c7d3e6;margin-top:6px}
+.wrap{max-width:1500px;margin:auto;padding:20px 18px 45px}.topline{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.status{font-size:12px;color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{border:0;border-radius:10px;padding:10px 14px;font-weight:700;font-size:12px;cursor:pointer;background:var(--navy);color:white}button.secondary{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.tabs a{padding:9px 13px;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;text-decoration:none;font-size:12px;font-weight:700}.tabs a.active{background:var(--navy);color:#fff}
+.filters{display:grid;grid-template-columns:repeat(2,minmax(170px,220px)) minmax(170px,220px) minmax(170px,220px) minmax(220px,1fr);gap:12px;margin-bottom:16px}.field label{display:block;font-size:11px;color:var(--muted);font-weight:800;margin:0 0 6px}.field select,.field input{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);font:inherit}
+.cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:16px}.card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:16px;box-shadow:var(--shadow);min-width:0}.k{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:.7px}.n{font-size:30px;font-weight:850;margin:7px 0 2px}.desc{font-size:11px;color:var(--muted)}.blue{color:var(--blue)}.orange{color:var(--orange)}.green{color:var(--green)}.red{color:var(--red)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow);margin-bottom:16px;overflow:hidden}.panelhead{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.panelhead h2{font-size:15px;margin:0}.panelhead small{color:var(--muted)}.tablewrap{overflow:auto;max-height:560px}table{border-collapse:separate;border-spacing:0;width:100%;min-width:920px;font-size:12px}.sortable{cursor:pointer;user-select:none}.sortable:hover{background:#eaf0f8;color:#233d63}.sortmark{font-size:10px;margin-left:4px;color:#3478f6}.sortable:focus{outline:2px solid #3478f6;outline-offset:-2px}
+th{position:sticky;top:0;background:#f7f9fc;color:#63718a;text-align:left;font-size:10px;letter-spacing:.4px;text-transform:uppercase;padding:12px;z-index:1;border-bottom:1px solid var(--line);white-space:nowrap}td{padding:11px 12px;border-bottom:1px solid #eff2f7;white-space:nowrap}tbody tr:hover{background:#f8fbff}.pill{display:inline-block;border-radius:20px;padding:4px 8px;font-size:10px;font-weight:800}.pnew{background:#e9f1ff;color:#2864ca}.pprog{background:#fff0df;color:#b65a13}.pok{background:#e4f7ef;color:#137a57}.pcancel{background:#ffe5e8;color:#c32f42}.empty{text-align:center;color:var(--muted);padding:30px}.note{font-size:11px;color:var(--muted);line-height:1.6;margin:12px 2px}.error{display:none;padding:12px;border-radius:10px;background:#fff1f1;border:1px solid #ffd2d2;color:#9d2935;font-size:12px;margin-bottom:14px}
+@media(max-width:760px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.filters{grid-template-columns:1fr}.wrap{padding:14px 11px 32px}.n{font-size:26px}}
+
+/* PREMIUM MORAREPUBLIC THEME */
+:root{
+ --bg:#0b0e13;--card:#151a22;--ink:#f4f5f7;--muted:#a0a9b7;
+ --line:#303846;--navy:#a91524;--gold:#e7bd63;--blue:#69a5ff;
+ --orange:#ffad62;--red:#ff6875;--green:#50d6a5;
+ --shadow:0 16px 42px rgba(0,0,0,.28)
+}
+body{
+ background:
+ radial-gradient(ellipse at 12% 0%,rgba(174,25,39,.19),transparent 34%),
+ radial-gradient(ellipse at 92% 15%,rgba(231,189,99,.09),transparent 28%),
+ linear-gradient(145deg,#0a0d12,#111720 55%,#0b0e13);
+ color:var(--ink)
+}
+header{
+ position:relative;overflow:hidden;
+ background:linear-gradient(112deg,#080a0e 0%,#241016 52%,#54131c 100%);
+ border-bottom:1px solid rgba(231,189,99,.45);
+ padding-top:28px;padding-bottom:28px;
+ box-shadow:0 12px 35px rgba(0,0,0,.28)
+}
+header:after{
+ content:"";position:absolute;width:330px;height:330px;border-radius:50%;
+ right:7%;top:-235px;border:1px solid rgba(231,189,99,.24);
+ box-shadow:0 0 0 28px rgba(231,189,99,.025),0 0 0 58px rgba(231,189,99,.02);
+ pointer-events:none
+}
+.brand{position:relative;z-index:1}
+.logo{
+ width:54px;height:54px;border-radius:16px;
+ background:linear-gradient(145deg,#ffe19a,#bd852b 70%,#81531e);
+ color:#20160b;border:1px solid #ffdf91;
+ box-shadow:0 7px 22px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.45);
+ letter-spacing:-1px
+}
+h1{font-weight:900;letter-spacing:.5px;text-shadow:0 2px 16px #0006}
+.sub{color:#e4d7c9;letter-spacing:.25px}
+.wrap{padding-top:24px}
+.topline{padding:11px 14px;border:1px solid var(--line);border-radius:13px;background:rgba(21,26,34,.78);backdrop-filter:blur(12px)}
+.status{color:#c0c8d3}
+button{
+ background:linear-gradient(120deg,#d72b3a,#8e1420);
+ color:#fff;border:1px solid rgba(255,116,126,.42);
+ border-radius:11px;box-shadow:0 6px 16px rgba(155,20,34,.2);
+ transition:transform .18s,filter .18s,box-shadow .18s
+}
+button:hover{filter:brightness(1.13);transform:translateY(-1px);box-shadow:0 9px 22px rgba(155,20,34,.28)}
+button.secondary{background:#202833;color:#e8edf4;border:1px solid #3b4655;box-shadow:none}
+button.secondary:hover{background:#2a3542}
+.tabs{gap:9px}
+.tabs a{
+ background:#171d26;color:#cbd3df;border:1px solid #333e4c;
+ border-radius:11px;padding:10px 15px;transition:.18s
+}
+.tabs a:hover{border-color:#b78c47;color:#fff;background:#202733}
+.tabs a.active{
+ color:#fff;background:linear-gradient(110deg,#d72b3a,#80131d);
+ border-color:#ef5a65;box-shadow:0 6px 18px rgba(166,20,34,.25)
+}
+.field label{color:#c2c9d3;letter-spacing:.8px}
+.field select,.field input{
+ background:#151c25;color:#f2f4f7;border:1px solid #394555;
+ border-radius:11px;outline:none;transition:border-color .18s,box-shadow .18s
+}
+.field select:focus,.field input:focus{border-color:#d5a64f;box-shadow:0 0 0 3px rgba(213,166,79,.13)}
+.card,.panel{
+ background:linear-gradient(150deg,rgba(26,33,44,.98),rgba(17,22,30,.98));
+ border:1px solid #343e4c;border-radius:17px;box-shadow:var(--shadow)
+}
+.card{position:relative;overflow:hidden;transition:transform .18s,border-color .18s}
+.card:before{
+ content:"";position:absolute;left:0;top:0;width:100%;height:3px;
+ background:linear-gradient(90deg,#9e1825,#e5b85c,transparent 85%);opacity:.9
+}
+.card:hover{transform:translateY(-2px);border-color:#6b5360}
+.k{color:#b7c0cc;letter-spacing:1px}
+.n{color:#fff;letter-spacing:-.7px}
+.desc{color:#9da8b7}
+.blue{color:#78adff}.orange{color:#ffb36e}.green{color:#57d9aa}.red{color:#ff7480}
+.panelhead{background:linear-gradient(100deg,#202833,#171d26);border-bottom:1px solid #364150}
+.panelhead h2{color:#f4f5f7;font-weight:850;letter-spacing:.2px}
+.panelhead small{color:#aeb8c6}
+.tablewrap{background:#111720}
+table{color:#e6eaf0}
+th{
+ background:#202833;color:#e2c27d;border-bottom:1px solid #46515f;
+ letter-spacing:.65px
+}
+.sortable:hover{background:#303c4b;color:#fff}
+.sortmark{color:#f0c76c}
+.sortable:focus{outline:2px solid #e7bd63}
+td{border-bottom:1px solid #29323e}
+tbody tr:hover{background:#222d39}
+.pnew{background:#19365b;color:#9dc4ff}
+.pprog{background:#56351c;color:#ffc184}
+.pok{background:#153f34;color:#7ce2bd}
+.pcancel{background:#54232b;color:#ff9aa4}
+.empty{color:#aab4c2}
+.note{color:#9ca8b7}
+.error{background:#421c23;border-color:#85313d;color:#ffb6bd}
+::selection{background:#9d1c2a;color:white}
+@media(max-width:760px){
+ header{padding:22px 15px}
+ .logo{width:48px;height:48px}
+ .wrap{padding-top:14px}
+ .topline{align-items:flex-start}
+ .tabs{display:grid;grid-template-columns:1fr 1fr}
+ .tabs a{text-align:center}
+ .card{border-radius:14px;padding:14px}
+}
+
+
+/* DASHBOARD VISUAL UPGRADE */
+.hero-strip{display:grid;grid-template-columns:1.45fr .8fr;gap:14px;margin:0 0 16px}
+.hero-main,.hero-side{border:1px solid #4b3940;border-radius:18px;padding:19px 21px;background:linear-gradient(115deg,rgba(111,19,31,.88),rgba(33,24,31,.96) 62%,rgba(24,31,41,.98));box-shadow:0 18px 42px rgba(0,0,0,.24);position:relative;overflow:hidden}
+.hero-main:after{content:"";position:absolute;width:220px;height:220px;border:1px solid #e7bd6330;border-radius:50%;right:4%;top:-145px;box-shadow:0 0 0 24px #e7bd6308,0 0 0 50px #e7bd6306}
+.eyebrow{font-size:10px;letter-spacing:1.8px;font-weight:900;color:#e7bd63;text-transform:uppercase}
+.hero-title{font-size:clamp(18px,2.4vw,25px);font-weight:900;margin:8px 0 5px;letter-spacing:.2px}
+.hero-copy{font-size:12px;color:#d4cbd0;line-height:1.6;max-width:680px}
+.hero-side{background:linear-gradient(140deg,#202a36,#151b24);display:flex;flex-direction:column;justify-content:center}
+.hero-side .mini-label{font-size:10px;color:#aeb8c6;font-weight:800;letter-spacing:1px}
+.hero-side .mini-value{font-size:25px;font-weight:900;margin:5px 0;color:#f4d48e}
+.hero-side .mini-foot{font-size:11px;color:#aeb8c6}
+.section-kicker{display:flex;align-items:center;gap:9px;margin:18px 2px 10px;color:#e8d3a5;font-size:11px;font-weight:900;letter-spacing:1.25px;text-transform:uppercase}
+.section-kicker:before{content:"";width:22px;height:2px;background:linear-gradient(90deg,#d72b3a,#e7bd63);border-radius:3px}
+.status-track{height:9px;border-radius:20px;background:#303946;display:flex;overflow:hidden;margin-top:12px}
+.status-track span{height:100%;display:block;min-width:0;transition:width .25s}
+.status-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:11px}
+.status-legend span{font-size:10px;color:#b9c2ce;display:flex;align-items:center;gap:6px}
+.status-legend i{width:7px;height:7px;border-radius:50%;display:inline-block}
+.card .k{display:flex;align-items:center;gap:7px}
+.card .k:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 10px currentColor}
+.card .n{font-variant-numeric:tabular-nums}
+.panel{backdrop-filter:blur(8px)}
+.panelhead{padding:17px 19px}
+.panelhead h2{display:flex;align-items:center;gap:9px}
+.panelhead h2:before{content:"";width:4px;height:17px;border-radius:5px;background:linear-gradient(#e7bd63,#a91524)}
+table{font-variant-numeric:tabular-nums}
+tbody tr{transition:background .15s}
+tfoot th{background:#2b3542;color:#f0d28e}
+#detailCount{padding:6px 10px;border:1px solid #485362;border-radius:20px;background:#202a36;color:#f0d28e;font-weight:800}
+@media(max-width:760px){.hero-strip{grid-template-columns:1fr}.hero-main,.hero-side{padding:16px}.hero-side{min-height:105px}}
+
+
+:root{--bg:#07080d;--card:#111319;--ink:#f7f7fa;--muted:#aeb0bb;--line:#34343d;--navy:#17070b;--gold:#efc65f;--blue:#2389f5;--orange:#ff8b1f;--red:#ed3548;--green:#24b84e;--shadow:0 12px 30px rgba(0,0,0,.38)}
+body{background:radial-gradient(ellipse at 50% -20%,#441018 0,#111017 42%,#07080d 78%);color:var(--ink)}
+header.masthead{padding:13px 22px;background:linear-gradient(100deg,#21070b,#09090d 48%,#330910);border-bottom:2px solid #9e1828;box-shadow:0 7px 25px #0009}
+.mast-inner{max-width:1700px;margin:auto;display:grid;grid-template-columns:1fr 1.55fr 1fr;align-items:center;gap:18px}
+.brand{gap:12px}.logo{width:52px;height:52px;border-radius:14px;background:linear-gradient(145deg,#f5d36c,#b87819);font-size:27px;box-shadow:0 0 20px #d99d3444}
+.brandname{font-size:clamp(17px,2vw,26px);font-weight:950;font-style:italic;letter-spacing:.4px;color:#fff}
+.mast-title{text-align:left;border-left:2px solid #e6bd58;padding-left:22px}
+.mast-title h1{font-size:clamp(18px,2.4vw,32px);font-weight:950;letter-spacing:.4px;color:#f4d36f;text-shadow:0 2px 12px #d9a53b55}
+.mast-title .sub{font-size:17px;font-weight:850;color:#fff;letter-spacing:1px}
+.red-slashes{color:#b9162c;letter-spacing:4px}
+.period-box{justify-self:end;display:flex;gap:12px;align-items:center;padding:10px 15px;border:1px solid #8f2834;border-radius:12px;background:#130b10}
+.period-box>span{font-size:28px;color:#efc65f}.period-box small{display:block;color:#c8bfc3;font-size:11px}.period-box b{display:block;font-size:15px;color:#fff}
+.wrap{max-width:1700px;padding:13px 14px 38px}
+.tabs{margin-bottom:8px}
+.topline{margin-bottom:9px}
+.status{color:#c8c5cc}
+.section-kicker{margin:12px 2px 8px;color:#efce79;font-size:10px;letter-spacing:1.4px}
+.filters{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1.6fr;gap:9px;padding:12px;background:linear-gradient(110deg,#171920,#101116);border:1px solid #383943;border-radius:14px;box-shadow:0 8px 22px #0005}
+.field label{color:#d4cbd0;font-size:10px;font-weight:850}
+input,select{background:#0b0d12!important;color:#f5f5f7!important;border:1px solid #55545d!important;border-radius:9px!important;min-height:40px}
+.panel{background:linear-gradient(145deg,#15161c,#0e0f14);border:1px solid #73303b;border-radius:15px;box-shadow:0 8px 25px #0006;overflow:hidden}
+.panelhead{background:linear-gradient(90deg,#4b0e19,#1b1017);border-bottom:1px solid #79212d;padding:12px 17px}
+.panelhead h2{color:#fff;font-size:17px;font-weight:900;letter-spacing:.3px}
+.panelhead small{color:#d5c5c9}
+.cards{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;padding:12px}
+.card{background:linear-gradient(145deg,#1c1d25,#101116);border:1px solid #41414a;border-radius:13px;padding:14px;box-shadow:0 6px 16px #0005}
+.card .k{font-size:11px;color:#e9e9ed;font-weight:900;letter-spacing:.4px}
+.card .n{font-size:clamp(26px,3vw,39px);font-weight:950;color:#fff;margin-top:7px}
+.card .desc{font-size:10px;color:#aeb0bb}
+.card.total-card{background:linear-gradient(135deg,#5b4308,#1e1709);border:1px solid #e8bd3e;box-shadow:0 0 18px #d9a53324}
+.card.total-card .n{color:#ffe18a}
+.card:nth-child(2){border-color:#147cdb}.card:nth-child(2) .n{color:#55aaff}
+.card:nth-child(3){border-color:#d77b17}.card:nth-child(3) .n{color:#ffad55}
+.card:nth-child(4){border-color:#bd2438}.card:nth-child(4) .n{color:#ff6575}
+.card:nth-child(5){border-color:#218e42}.card:nth-child(5) .n{color:#5be27a}
+.card:nth-child(6){border-color:#8834b5}.card:nth-child(6) .n{color:#c58cff}
+.status-distribution{margin:0 12px 12px!important;background:#111319}
+.status-track{height:24px;background:#292a32}
+.status-legend span{font-size:11px;color:#ddd}
+.tablewrap{overflow:auto}
+table{min-width:950px;border-collapse:separate;border-spacing:0;color:#f1f1f4}
+thead th{background:linear-gradient(#59121e,#330d15);color:#fff;border-color:#53232b;font-size:11px;white-space:nowrap}
+tbody td{border-color:#303039;font-size:11px}
+tbody tr:nth-child(even){background:#191a21}
+tbody tr:hover{background:#2b1b21}
+tfoot th{background:#4c350b;color:#ffe08a;border-color:#a17a26}
+.pill{font-weight:850}
+#detailCount{color:#ffe08a;background:#261a0e;border-color:#8a6729}
+@media(max-width:1050px){.mast-inner{grid-template-columns:1fr 1.3fr}.period-box{grid-column:1/-1;justify-self:start}.cards{grid-template-columns:repeat(3,1fr)}.filters{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.mast-inner{grid-template-columns:1fr}.mast-title{border-left:0;padding-left:0}.period-box{grid-column:auto}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.filters{grid-template-columns:1fr}.wrap{padding:10px 8px}}
+
+</style></head><body>
+<header class="masthead"><div class="mast-inner">
+<div class="brand"><div class="logo">🚀</div><div><div class="brandname">MORAREPUBLIC</div><div class="sub">SURABAYA 2</div></div></div>
+<div class="mast-title"><h1>WORK ORDER CONTROL CENTER</h1><div class="sub">SURABAYA 2 <span class="red-slashes">▰ ▰ ▰</span></div></div>
+<div class="period-box"><span>▦</span><div><small>Periode Appointment Date</small><b id="periodDisplay">Semua tanggal</b></div></div>
+</div></header>
+<main class="wrap">
+<nav class="tabs"><a href="../">Performa SA / SA Unpaid</a><a href="../cluster-tanggung-jawab/">Cluster Tanggung Jawab</a><a class="active" href="./">Monitoring WO</a></nav>
+<div class="topline"><div class="status" id="syncStatus">Menghubungkan ke Google Sheets…</div><div class="actions"><button class="secondary" id="refreshBtn">↻ Refresh</button></div></div>
+<div id="errorBox" class="error"></div>
+
+<div class="section-kicker">FILTER DATA APPOINTMENT</div>
+<div class="filters"><div class="field"><label for="dateFrom">APPOINTMENT DATE MULAI</label><input type="date" id="dateFrom"></div><div class="field"><label for="dateTo">APPOINTMENT DATE SAMPAI</label><input type="date" id="dateTo"></div><div class="field"><label for="bsmFilter">FILTER BSM</label><select id="bsmFilter"><option value="">Memuat BSM…</option></select></div><div class="field"><label for="asmFilter">FILTER ASM</label><select id="asmFilter"><option value="">Semua ASM</option></select></div><div class="field"><label for="searchInput">CARI DETAIL WO</label><input id="searchInput" placeholder="Cari Customer ID, nama pelanggan, cluster, contractor, AE…"></div></div>
+<section class="panel today-status-panel"><div class="panelhead"><h2>INFO WO BERDASARKAN APPOINTMENT DATE</h2><small id="statusTodayLabel">Status WO berdasarkan tanggal hari ini</small></div><div class="cards"><div class="card total-card"><div class="k">TOTAL WO</div><div class="n" id="kTotal">—</div><div class="desc">Total data sesuai filter</div></div>
+<div class="card"><div class="k">WO NEW</div><div class="n blue" id="kNew">—</div><div class="desc">appointmentStatus: New</div></div>
+<div class="card"><div class="k">IN PROGRESS</div><div class="n orange" id="kProgress">—</div><div class="desc">appointmentStatus: In Progress</div></div>
+<div class="card"><div class="k">UNSUCCESSFULLY</div><div class="n red" id="kUnsuccessful">—</div><div class="desc">appointmentStatus: Unsuccessful</div></div>
+<div class="card"><div class="k">SUCCESSFULLY</div><div class="n green" id="kSuccess">—</div><div class="desc">appointmentStatus: Successful</div></div>
+<div class="card"><div class="k">CANCEL</div><div class="n red" id="kCancel">—</div><div class="desc">appointmentStatus: Cancelled</div></div>
+</div>
+<div class="card status-distribution" style="margin:0 16px 16px">
+  <div class="k">KOMPOSISI STATUS WO</div>
+  <div class="status-track" id="statusTrack">
+    <span style="width:0;background:#69a5ff"></span><span style="width:0;background:#ffad62"></span><span style="width:0;background:#ff6875"></span><span style="width:0;background:#50d6a5"></span><span style="width:0;background:#a78bfa"></span>
+  </div>
+  <div class="status-legend">
+    <span><i style="background:#69a5ff"></i>New</span>
+    <span><i style="background:#ffad62"></i>In Progress</span>
+    <span><i style="background:#ff6875"></i>Unsuccessful</span>
+    <span><i style="background:#50d6a5"></i>Successfully</span>
+    <span><i style="background:#a78bfa"></i>Cancel</span>
+  </div>
+</div>
+</section>
+<div class="section-kicker">Produktivitas tim</div>
+<section class="panel"><div class="panelhead"><h2>WO PER ASM</h2><small id="todayLabel">Tanggal hari ini</small></div><div class="tablewrap"><table style="min-width:520px"><thead><tr><th>ASM</th><th>TOTAL WO</th><th>NEW</th><th>IN PROGRESS</th><th>UNSUCCESSFUL</th><th>SUCCESSFULLY</th><th>CANCEL</th></tr></thead><tbody id="asmTodayBody"><tr><td colspan="7" class="empty">Memuat data…</td></tr></tbody><tfoot id="asmTodayFoot"></tfoot></table></div></section>
+<div class="section-kicker">Rincian dan pencarian work order</div>
+<section class="panel"><div class="panelhead"><h2>DETAIL WORK ORDER</h2><small id="detailCount">0 data</small></div><div class="tablewrap"><table><thead><tr>
+<th class="sortable" data-sort="customerId">Customer ID <span class="sortmark"></span></th>
+<th class="sortable" data-sort="endUserName">Customer Name <span class="sortmark"></span></th>
+<th class="sortable" data-sort="contractorName">Contractor Name <span class="sortmark"></span></th>
+<th class="sortable" data-sort="clusterName">Cluster Name <span class="sortmark"></span></th>
+<th class="sortable" data-sort="asmName">ASM <span class="sortmark"></span></th>
+<th class="sortable" data-sort="salesName">AE / Sales Name <span class="sortmark"></span></th>
+<th class="sortable" data-sort="appointmentDate">Tanggal WO <span class="sortmark"></span></th>
+<th class="sortable" data-sort="slotTime">Slot Time <span class="sortmark"></span></th>
+<th class="sortable" data-sort="appointmentStatus">Status WO <span class="sortmark"></span></th>
+<th class="sortable" data-sort="Status WO">Kategori <span class="sortmark"></span></th>
+</tr></thead><tbody id="detailBody"><tr><td colspan="10" class="empty">Memuat data…</td></tr></tbody></table></div></section>
+<p class="note">Sumber: Google Sheets (CSV live), otomatis diperbarui setiap 1 menit. BSM default BENNY HADIAWAN dan dapat diganti melalui filter BSM. Status In Progress dan Unsuccessful dihitung terpisah sesuai nilai appointmentStatus di sumber data.</p>
+</main>
+<script>
+const CSV_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vSgjirhiUfgrChiHVabaT0ukDbU05gKVwbj_GjJURLj2CvdXSh6LQDfknSyqNb37-Ssccg12nbfLGkn/pub?gid=1649075390&single=true&output=csv";
+const DEFAULT_BSM='BENNY HADIAWAN';let allRows=[];let sortState={key:'appointmentDate',dir:'desc'};
+const $=id=>document.getElementById(id);
+function norm(v){return String(v??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]/g,'')}
+function parseCSV(text){const out=[];let row=[],cell='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i],n=text[i+1];if(c==='"'&&quoted&&n==='"'){cell+='"';i++}else if(c==='"'){quoted=!quoted}else if(c===','&&!quoted){row.push(cell);cell=''}else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&n==='\n')i++;row.push(cell);if(row.some(x=>x!==''))out.push(row);row=[];cell=''}else cell+=c}row.push(cell);if(row.some(x=>x!==''))out.push(row);const headers=(out.shift()||[]).map(x=>x.trim().replace(/^\uFEFF/,''));return out.map(cells=>Object.fromEntries(headers.map((h,i)=>[h,(cells[i]??'').trim()])))}
+function parseDate(v){if(!v)return null;const s=String(v).trim();let m=s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);if(m)return new Date(+m[3],+m[1]-1,+m[2]);m=s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);if(m)return new Date(+m[1],+m[2]-1,+m[3]);const d=new Date(s);return isNaN(d)?null:new Date(d.getFullYear(),d.getMonth(),d.getDate())}
+function dateKey(d){return d?d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'):''}
+function today(){const p=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Jakarta',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()),g=t=>p.find(x=>x.type===t).value;return new Date(+g('year'),+g('month')-1,+g('day'))}
+function fmtDate(v){const d=parseDate(v);return d?d.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'}):(v||'-')}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function statusClass(s){return s==='New'?'pnew':s==='In Progress'?'pprog':s==='Unsuccessful'?'pcancel':s==='Successful'?'pok':s==='Cancelled'?'pcancel':''}
+function displayStatus(s){return s==='Successful'?'Successfully':s==='Cancelled'?'Cancel':s||'Tidak diketahui'}
+function filtered(){const bsm=$('bsmFilter').value,asm=$('asmFilter').value,q=$('searchInput').value.trim().toLowerCase(),from=$('dateFrom').value,to=$('dateTo').value;return allRows.filter(r=>{const dt=dateKey(parseDate(r.appointmentDate));return (!from||dt>=from)&&(!to||dt<=to)&&(!bsm||norm(r.bsmName)===bsm)&&(!asm||r.asmName===asm)&&(!q||['customerId','endUserName','contractorName','clusterName','asmName','salesName','slotTime','bsmName'].some(k=>String(r[k]||'').toLowerCase().includes(q)))})}
+function sortValue(row,key){
+ const value=row[key]??'';
+ if(key==='appointmentDate'){const d=parseDate(value);return d?d.getTime():-Infinity}
+ if(key==='customerId'){const n=Number(String(value).replace(/[^0-9.-]/g,''));return Number.isFinite(n)&&String(value).trim()!==''?n:String(value).toLocaleLowerCase('id')}
+ return String(value).trim().toLocaleLowerCase('id');
+}
+function compareRows(a,b,key,dir){
+ const av=sortValue(a,key),bv=sortValue(b,key);
+ let cmp;
+ if(typeof av==='number'&&typeof bv==='number')cmp=av===bv?0:(av<bv?-1:1);
+ else cmp=String(av).localeCompare(String(bv),'id',{numeric:true,sensitivity:'base'});
+ return dir==='asc'?cmp:-cmp;
+}
+function updateSortMarks(){
+ document.querySelectorAll('th.sortable').forEach(th=>{
+  const mark=th.querySelector('.sortmark');
+  if(mark)mark.textContent=th.dataset.sort===sortState.key?(sortState.dir==='asc'?'▲':'▼'):'↕';
+  th.setAttribute('aria-sort',th.dataset.sort===sortState.key?(sortState.dir==='asc'?'ascending':'descending'):'none');
+ });
+}
+function render(){const rows=filtered(),st=r=>r.appointmentStatus;const from=$('dateFrom').value,to=$('dateTo').value,rangeLabel=from||to?(from?fmtDate(from):'Awal data')+' – '+(to?fmtDate(to):'Tanggal terbaru'):'Semua tanggal';$('statusTodayLabel').textContent='Appointment Date: '+rangeLabel;$('kNew').textContent=rows.filter(r=>st(r)==='New').length.toLocaleString('id-ID');$('kProgress').textContent=rows.filter(r=>st(r)==='In Progress').length.toLocaleString('id-ID');$('kUnsuccessful').textContent=rows.filter(r=>st(r)==='Unsuccessful').length.toLocaleString('id-ID');$('kSuccess').textContent=rows.filter(r=>st(r)==='Successful').length.toLocaleString('id-ID');$('kCancel').textContent=rows.filter(r=>st(r)==='Cancelled').length.toLocaleString('id-ID');
+const statusCounts=[rows.filter(r=>st(r)==='New').length,rows.filter(r=>st(r)==='In Progress').length,rows.filter(r=>st(r)==='Unsuccessful').length,rows.filter(r=>st(r)==='Successful').length,rows.filter(r=>st(r)==='Cancelled').length];
+const total=rows.length;$('heroTotal').textContent=total.toLocaleString('id-ID');$('kTotal').textContent=total.toLocaleString('id-ID');$('heroRange').textContent=rangeLabel+' · '+new Date().toLocaleDateString('id-ID',{day:'2-digit',month:'long',year:'numeric'});$('periodDisplay').textContent=rangeLabel;
+const track=$('statusTrack');if(track){const colors=['#69a5ff','#ffad62','#ff6875','#50d6a5','#a78bfa'];track.innerHTML=statusCounts.map((v,i)=>'<span title="'+['New','In Progress','Unsuccessful','Successfully','Cancel'][i]+': '+v+'" style="width:'+(total?v/total*100:0)+'%;background:'+colors[i]+'"></span>').join('')}
+
+$('todayLabel').textContent='Mengikuti filter Appointment Date';const groups={};rows.forEach(r=>{const a=r.asmName||'ASM tidak terisi';groups[a]??={New:0,Progress:0,Unsuccessful:0,Successful:0,Cancelled:0,total:0};const status=st(r);if(status==='New')groups[a].New++;else if(status==='In Progress')groups[a].Progress++;else if(status==='Unsuccessful')groups[a].Unsuccessful++;else if(status==='Successful')groups[a].Successful++;else if(status==='Cancelled')groups[a].Cancelled++;groups[a].total++});const names=Object.keys(groups).sort((a,b)=>a.localeCompare(b,'id'));$('asmTodayBody').innerHTML=names.length?names.map(a=>'<tr><td><b>'+esc(a)+'</b></td><td>'+groups[a].total+'</td><td>'+groups[a].New+'</td><td>'+groups[a].Progress+'</td><td>'+groups[a].Unsuccessful+'</td><td>'+groups[a].Successful+'</td><td>'+groups[a].Cancelled+'</td></tr>').join(''):'<tr><td colspan="7" class="empty">Tidak ada WO untuk filter ini.</td></tr>';const sum=k=>Object.values(groups).reduce((v,x)=>v+x[k],0);$('asmTodayFoot').innerHTML='<tr><th>TOTAL</th><th>'+rows.length+'</th><th>'+sum('New')+'</th><th>'+sum('Progress')+'</th><th>'+sum('Unsuccessful')+'</th><th>'+sum('Successful')+'</th><th>'+sum('Cancelled')+'</th></tr>';
+$('detailCount').textContent=rows.length.toLocaleString('id-ID')+' data';updateSortMarks();$('detailBody').innerHTML=rows.length?rows.slice().sort((a,b)=>compareRows(a,b,sortState.key,sortState.dir)).map(r=>'<tr><td><b>'+esc(r.customerId||'-')+'</b></td><td>'+esc(r.endUserName||'-')+'</td><td>'+esc(r.contractorName||'-')+'</td><td>'+esc(r.clusterName||'-')+'</td><td>'+esc(r.asmName||'-')+'</td><td>'+esc(r.salesName||'-')+'</td><td>'+esc(fmtDate(r.appointmentDate))+'</td><td>'+esc(r.slotTime||'-')+'</td><td><span class="pill '+statusClass(r.appointmentStatus)+'">'+esc(displayStatus(r.appointmentStatus))+'</span></td><td>'+esc(r['Status WO']||'-')+'</td></tr>').join(''):'<tr><td colspan="10" class="empty">Tidak ada data sesuai filter.</td></tr>'}
+function populateAsm(){const bsm=$('bsmFilter').value,old=$('asmFilter').value;const scoped=allRows.filter(r=>!bsm||norm(r.bsmName)===bsm);const asms=[...new Set(scoped.map(r=>r.asmName).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'id'));$('asmFilter').innerHTML='<option value="">Semua ASM</option>'+asms.map(a=>'<option value="'+esc(a)+'">'+esc(a)+'</option>').join('');$('asmFilter').value=asms.includes(old)?old:''}
+async function load(){$('syncStatus').textContent='Mengambil data Google Sheets…';$('errorBox').style.display='none';try{const res=await fetch(CSV_URL+(CSV_URL.includes('?')?'&':'?')+'_='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);allRows=parseCSV(await res.text()).filter(r=>String(r.bsmName||'').trim()!=='');if(!allRows.length)throw Error('Tidak ditemukan data BSM pada kolom bsmName');const bsms=[...new Map(allRows.map(r=>[norm(r.bsmName),r.bsmName])).entries()].sort((a,b)=>a[1].localeCompare(b[1],'id'));const oldBsm=$('bsmFilter').value;const defaultBsm=bsms.find(x=>x[0]===norm(DEFAULT_BSM));$('bsmFilter').innerHTML=bsms.map(([key,label])=>'<option value="'+esc(key)+'">'+esc(label.replace(/\s*\.$/,''))+'</option>').join('');$('bsmFilter').value=bsms.some(x=>x[0]===oldBsm)?oldBsm:(defaultBsm?defaultBsm[0]:bsms[0][0]);populateAsm();render();const selected=$('bsmFilter').selectedOptions[0]?.textContent||'BSM';$('syncStatus').textContent='LIVE · '+filtered().length.toLocaleString('id-ID')+' WO untuk '+selected+' · diperbarui '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}catch(e){$('syncStatus').textContent='Gagal memuat data';$('errorBox').textContent='Data Google Sheets tidak dapat dimuat: '+e.message;$('errorBox').style.display='block'}}
+document.querySelectorAll('th.sortable').forEach(th=>{th.setAttribute('tabindex','0');th.setAttribute('role','button');th.addEventListener('click',()=>{const key=th.dataset.sort;if(sortState.key===key)sortState.dir=sortState.dir==='asc'?'desc':'asc';else{sortState.key=key;sortState.dir='asc'}render()});th.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();th.click()}})});
+$('bsmFilter').addEventListener('change',()=>{populateAsm();render();const selected=$('bsmFilter').selectedOptions[0]?.textContent||'BSM';$('syncStatus').textContent='LIVE · '+filtered().length.toLocaleString('id-ID')+' WO untuk '+selected});$('asmFilter').addEventListener('change',render);$('searchInput').addEventListener('input',render);$('dateFrom').addEventListener('change',render);$('dateTo').addEventListener('change',render);$('refreshBtn').addEventListener('click',load);load();setInterval(load,60000);
+</script></body></html>
