@@ -83,9 +83,9 @@ button:focus-visible{outline:2px solid var(--mr-gold);outline-offset:3px}
 
 
 /* Clickable summary figures and detail popup */
-.wo-click-number{cursor:pointer!important;text-decoration:underline;text-decoration-style:dotted;text-decoration-color:#e8c56b;text-underline-offset:4px;border-radius:5px}
-.wo-click-number:hover{color:#ffe3a0!important;background:#e8c56b18}
-.wo-click-number:focus-visible{outline:2px solid #e8c56b;outline-offset:3px}
+.wo-click-number{appearance:none;-webkit-appearance:none;display:inline;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:inherit!important;font:inherit!important;font-weight:inherit!important;line-height:inherit;min-width:0!important;min-height:0!important;height:auto!important;cursor:pointer!important;text-decoration:none!important;vertical-align:baseline}
+.wo-click-number:hover{color:#f6dfa2!important;text-decoration:underline!important;text-decoration-color:#e8c56b!important;text-underline-offset:3px;filter:none!important;transform:none!important}
+.wo-click-number:focus-visible{outline:2px solid #e8c56b;outline-offset:3px;border-radius:2px}
 .wo-modal-backdrop{display:none;position:fixed;inset:0;z-index:9999;background:#030407d9;backdrop-filter:blur(5px);padding:3vh 2vw;align-items:center;justify-content:center}
 .wo-modal-backdrop.open{display:flex}
 .wo-modal{width:min(1500px,96vw);max-height:94vh;display:flex;flex-direction:column;background:linear-gradient(145deg,#191c25,#0b0d12);border:1px solid #bd8d3d;border-radius:16px;box-shadow:0 22px 70px #000c;overflow:hidden}
