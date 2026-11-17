@@ -85,8 +85,9 @@ button:focus-visible{outline:2px solid var(--mr-gold);outline-offset:3px}
 
 /* WhatsApp report preview and editing */
 .wo-report-actions{display:flex;align-items:center;gap:12px}
-.wa-report-btn{padding:7px 11px;border:1px solid #b98c4c;border-radius:8px;background:linear-gradient(135deg,#39202a,#171219);color:#f5d98e;font-size:11px;font-weight:900;white-space:nowrap;cursor:pointer}
-.wa-report-btn:hover{filter:brightness(1.2)}
+.wa-report-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:7px 12px;border:1px solid #20b96b;border-radius:9px;background:linear-gradient(135deg,#20c76a,#087b43);color:#fff;font-size:11px;font-weight:900;white-space:nowrap;cursor:pointer;box-shadow:0 3px 10px #00a85a30}
+.wa-report-btn svg{width:17px;height:17px;flex:0 0 17px}
+.wa-report-btn:hover{filter:brightness(1.12);box-shadow:0 4px 14px #00a85a55}
 .wo-report-backdrop{display:none;position:fixed;inset:0;z-index:10010;background:#030407e8;backdrop-filter:blur(6px);padding:3vh 2vw;align-items:center;justify-content:center}
 .wo-report-backdrop.open{display:flex}
 .wo-report-modal{width:min(850px,96vw);max-height:94vh;display:flex;flex-direction:column;background:linear-gradient(145deg,#191c25,#0b0d12);border:1px solid #bd8d3d;border-radius:16px;box-shadow:0 22px 70px #000c;overflow:hidden}
@@ -169,14 +170,14 @@ button:focus-visible{outline:2px solid var(--mr-gold);outline-offset:3px}
     <div class="card cancel-card"><div class="metric-icon">▣</div><div class="metric-copy"><div class="k">CANCEL</div><div class="n" id="kCancel">—</div></div></div>
   </section>
   <section class="analytics-grid">
-    <div class="panel composition-panel slot-summary-panel"><div class="panelhead"><h2>▦ &nbsp;INFORMASI WO PER SLOT</h2><div class="wo-report-actions"><small id="statusTodayLabel">Appointment Date</small><button type="button" class="wa-report-btn" data-report="slot">↗ Report WA</button></div></div>
+    <div class="panel composition-panel slot-summary-panel"><div class="panelhead"><h2>▦ &nbsp;INFORMASI WO PER SLOT</h2><div class="wo-report-actions"><small id="statusTodayLabel">Appointment Date</small><button type="button" class="wa-report-btn" data-report="slot"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.2A12.3 12.3 0 0 0 5.4 21.7L4 28l6.5-1.7A12.4 12.4 0 1 0 16 3.2Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M12.1 10.2c-.4-.9-.8-.9-1.2-.9h-1c-.4 0-.9.2-1.3.7-.5.5-1.7 1.7-1.7 4.1s1.7 4.8 1.9 5.1c.2.3 3.3 5.2 8.1 7.1 4 1.6 4.8 1.3 5.7 1.2.9-.1 2.9-1.2 3.3-2.4.4-1.2.4-2.2.3-2.4-.1-.2-.5-.4-1-.7s-2.9-1.4-3.3-1.6c-.4-.1-.8-.2-1.1.3-.3.5-1.3 1.6-1.6 1.9-.3.3-.6.4-1.1.1-.5-.2-2.1-.8-4-2.5-1.5-1.3-2.5-2.9-2.8-3.4-.3-.5 0-.7.2-1 .2-.2.5-.6.7-.9.2-.3.3-.5.5-.8.2-.3.1-.6 0-.9-.1-.2-1-2.5-1.4-3.4Z" fill="currentColor" transform="translate(5 2) scale(.72)"/></svg><span>Report WA</span></button></div></div>
       <div class="tablewrap slot-summary-wrap"><table class="slot-summary-table"><thead><tr>
         <th>Slot Time</th><th>Total WO</th><th>New</th><th>In Progress</th><th>Unsuccessful</th><th>Successful</th><th>Cancel</th>
       </tr></thead><tbody id="slotSummaryBody"><tr><td colspan="7" class="empty">Memuat data…</td></tr></tbody><tfoot id="slotSummaryFoot"></tfoot></table></div>
     </div>
-    <div class="panel asm-panel"><div class="panelhead"><h2>♟ &nbsp;WO PER ASM</h2><div class="wo-report-actions"><small id="todayLabel">Mengikuti filter Appointment Date</small><button type="button" class="wa-report-btn" data-report="asm">↗ Report WA</button></div></div><div class="tablewrap"><table class="asm-table"><thead><tr><th>No</th><th>ASM</th><th>Total WO</th><th>New</th><th>In Progress</th><th>Unsuccessful</th><th>Successfully</th><th>Cancel</th></tr></thead><tbody id="asmTodayBody"><tr><td colspan="8" class="empty">Memuat data…</td></tr></tbody><tfoot id="asmTodayFoot"></tfoot></table></div></div>
+    <div class="panel asm-panel"><div class="panelhead"><h2>♟ &nbsp;WO PER ASM</h2><div class="wo-report-actions"><small id="todayLabel">Mengikuti filter Appointment Date</small><button type="button" class="wa-report-btn" data-report="asm"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.2A12.3 12.3 0 0 0 5.4 21.7L4 28l6.5-1.7A12.4 12.4 0 1 0 16 3.2Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M12.1 10.2c-.4-.9-.8-.9-1.2-.9h-1c-.4 0-.9.2-1.3.7-.5.5-1.7 1.7-1.7 4.1s1.7 4.8 1.9 5.1c.2.3 3.3 5.2 8.1 7.1 4 1.6 4.8 1.3 5.7 1.2.9-.1 2.9-1.2 3.3-2.4.4-1.2.4-2.2.3-2.4-.1-.2-.5-.4-1-.7s-2.9-1.4-3.3-1.6c-.4-.1-.8-.2-1.1.3-.3.5-1.3 1.6-1.6 1.9-.3.3-.6.4-1.1.1-.5-.2-2.1-.8-4-2.5-1.5-1.3-2.5-2.9-2.8-3.4-.3-.5 0-.7.2-1 .2-.2.5-.6.7-.9.2-.3.3-.5.5-.8.2-.3.1-.6 0-.9-.1-.2-1-2.5-1.4-3.4Z" fill="currentColor" transform="translate(5 2) scale(.72)"/></svg><span>Report WA</span></button></div></div><div class="tablewrap"><table class="asm-table"><thead><tr><th>No</th><th>ASM</th><th>Total WO</th><th>New</th><th>In Progress</th><th>Unsuccessful</th><th>Successfully</th><th>Cancel</th></tr></thead><tbody id="asmTodayBody"><tr><td colspan="8" class="empty">Memuat data…</td></tr></tbody><tfoot id="asmTodayFoot"></tfoot></table></div></div>
   </section>
-  <section class="panel detail-panel"><div class="panelhead"><h2>▰ &nbsp;DETAIL WORK ORDER</h2><div class="wo-report-actions"><small id="detailCount">0 data</small><button type="button" class="wa-report-btn" data-report="detail">↗ Report WA</button></div></div><div class="tablewrap"><table class="detail-table"><thead><tr>
+  <section class="panel detail-panel"><div class="panelhead"><h2>▰ &nbsp;DETAIL WORK ORDER</h2><div class="wo-report-actions"><small id="detailCount">0 data</small><button type="button" class="wa-report-btn" data-report="detail"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.2A12.3 12.3 0 0 0 5.4 21.7L4 28l6.5-1.7A12.4 12.4 0 1 0 16 3.2Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M12.1 10.2c-.4-.9-.8-.9-1.2-.9h-1c-.4 0-.9.2-1.3.7-.5.5-1.7 1.7-1.7 4.1s1.7 4.8 1.9 5.1c.2.3 3.3 5.2 8.1 7.1 4 1.6 4.8 1.3 5.7 1.2.9-.1 2.9-1.2 3.3-2.4.4-1.2.4-2.2.3-2.4-.1-.2-.5-.4-1-.7s-2.9-1.4-3.3-1.6c-.4-.1-.8-.2-1.1.3-.3.5-1.3 1.6-1.6 1.9-.3.3-.6.4-1.1.1-.5-.2-2.1-.8-4-2.5-1.5-1.3-2.5-2.9-2.8-3.4-.3-.5 0-.7.2-1 .2-.2.5-.6.7-.9.2-.3.3-.5.5-.8.2-.3.1-.6 0-.9-.1-.2-1-2.5-1.4-3.4Z" fill="currentColor" transform="translate(5 2) scale(.72)"/></svg><span>Report WA</span></button></div></div><div class="tablewrap"><table class="detail-table"><thead><tr>
     <th>No</th><th class="sortable" data-sort="customerId">CID (Customer ID) <span class="sortmark"></span></th><th class="sortable" data-sort="endUserName">Customer Name <span class="sortmark"></span></th><th class="sortable" data-sort="contractorName">IKR <span class="sortmark"></span></th><th class="sortable" data-sort="clusterName">Cluster <span class="sortmark"></span></th><th class="sortable" data-sort="asmName">ASM <span class="sortmark"></span></th><th class="sortable" data-sort="salesName">AE <span class="sortmark"></span></th><th class="sortable" data-sort="appointmentDate">Appointment Date <span class="sortmark"></span></th><th class="sortable" data-sort="slotTime">Slot Time <span class="sortmark"></span></th><th class="sortable" data-sort="appointmentStatus">Status <span class="sortmark"></span></th><th class="sortable" data-sort="Status WO">Kategori <span class="sortmark"></span></th>
   </tr>
   <tr class="detail-filter-row">
@@ -353,9 +354,39 @@ function makeWoReport(type){
    lines.push(reportStatusCounts(list));
   });
  }else{
-  lines.push('*DETAIL WORK ORDER*');
-  lines.push('No | CID | Customer | IKR | Cluster | ASM | AE | Tanggal | Slot | Status | Kategori');
-  rows.forEach((r,i)=>lines.push([i+1,r.customerId,r.endUserName,r.contractorName,r.clusterName,r.asmName,r.salesName,fmtDate(r.appointmentDate),r.slotTime,displayStatus(r.appointmentStatus),r['Status WO']].map(v=>String(v||'-').replace(/[|\r\n]/g,' ')).join(' | ')));
+  lines.push('*DETAIL WORK ORDER PER SLOT & AE*');
+  lines.push('Total data detail: '+rows.length+' WO');
+  const bySlot=new Map();
+  rows.forEach(r=>{
+   const slot=String(r.slotTime||'Slot tidak terisi').trim()||'Slot tidak terisi';
+   if(!bySlot.has(slot))bySlot.set(slot,new Map());
+   const byAE=bySlot.get(slot),ae=String(r.salesName||'AE tidak terisi').trim()||'AE tidak terisi';
+   if(!byAE.has(ae))byAE.set(ae,[]);
+   byAE.get(ae).push(r);
+  });
+  let number=0;
+  [...bySlot.entries()].sort((a,b)=>a[0].localeCompare(b[0],'id',{numeric:true,sensitivity:'base'})).forEach(([slot,aeGroups])=>{
+   const slotRows=[...aeGroups.values()].flat();
+   lines.push('');
+   lines.push('━━━━━━━━━━━━━━━━━━');
+   lines.push('*🕒 SLOT '+slot+'*');
+   lines.push('*Total WO Slot: '+slotRows.length+'*');
+   lines.push('━━━━━━━━━━━━━━━━━━');
+   [...aeGroups.entries()].sort((a,b)=>a[0].localeCompare(b[0],'id',{sensitivity:'base'})).forEach(([ae,items])=>{
+    lines.push('');
+    lines.push('*👤 AE: '+ae+'* _( '+items.length+' WO )_');
+    const statusPriority={'Successful':0,'New':1,'In Progress':2,'Unsuccessful':3,'Cancelled':4};
+    const orderedItems=items.slice().sort((a,b)=>(statusPriority[a.appointmentStatus]??5)-(statusPriority[b.appointmentStatus]??5));
+    orderedItems.forEach(r=>{
+     number++;
+     lines.push('  '+number+'. *'+String(r.endUserName||'Customer tidak terisi').replace(/[|\r\n]/g,' ')+'*');
+     lines.push('     CID: '+String(r.customerId||'-').replace(/[|\r\n]/g,' '));
+     lines.push('     Status: '+displayStatus(r.appointmentStatus)+' | Kategori: '+String(r['Status WO']||'-').replace(/[|\r\n]/g,' '));
+     lines.push('     IKR: '+String(r.contractorName||'-').replace(/[|\r\n]/g,' ')+' | Cluster: '+String(r.clusterName||'-').replace(/[|\r\n]/g,' '));
+     lines.push('     ASM: '+String(r.asmName||'-').replace(/[|\r\n]/g,' ')+' | Tanggal: '+fmtDate(r.appointmentDate));
+    });
+   });
+  });
  }
  lines.push('','_Laporan dibuat dari Dashboard Monitoring WO_');
  return lines.join('\n');
