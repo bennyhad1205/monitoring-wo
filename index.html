@@ -105,7 +105,7 @@ button:focus-visible{outline:2px solid var(--mr-gold);outline-offset:3px}
 @media(max-width:700px){.wo-report-actions{gap:7px;flex-wrap:wrap;justify-content:flex-end}.wo-report-actions small{font-size:9px}.wa-report-btn{font-size:10px;padding:6px 8px}.wo-report-backdrop{padding:8px}.wo-report-modal{width:100%;max-height:96vh}.wo-report-head{padding:13px}.wo-report-head h2{font-size:15px}#woReportText{min-height:260px;max-height:60vh;margin:10px;padding:11px}.wo-report-footer{padding:0 10px 12px;align-items:flex-start;flex-direction:column}.wo-report-footer>div{width:100%}.wo-report-footer button{flex:1}}
 
 /* Clickable summary figures and detail popup */
-.wo-click-number{appearance:none;-webkit-appearance:none;display:inline;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:inherit!important;font:inherit!important;font-weight:inherit!important;line-height:inherit;min-width:0!important;min-height:0!important;height:auto!important;cursor:pointer!important;text-decoration:none!important;vertical-align:baseline}
+.card[role="button"]{cursor:pointer}.card[role="button"]:focus-visible{outline:2px solid #e8c56b;outline-offset:3px}.wo-modal-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px;border-bottom:1px solid #ffffff18;color:#c9cbd3;font-size:11px}.wo-click-number{appearance:none;-webkit-appearance:none;display:inline;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:inherit!important;font:inherit!important;font-weight:inherit!important;line-height:inherit;min-width:0!important;min-height:0!important;height:auto!important;cursor:pointer!important;text-decoration:none!important;vertical-align:baseline}
 .wo-click-number:hover{color:#f6dfa2!important;text-decoration:underline!important;text-decoration-color:#e8c56b!important;text-underline-offset:3px;filter:none!important;transform:none!important}
 .wo-click-number:focus-visible{outline:2px solid #e8c56b;outline-offset:3px;border-radius:2px}
 .wo-modal-backdrop{display:none;position:fixed;inset:0;z-index:9999;background:#030407d9;backdrop-filter:blur(5px);padding:3vh 2vw;align-items:center;justify-content:center}
@@ -162,12 +162,12 @@ button:focus-visible{outline:2px solid var(--mr-gold);outline-offset:3px}
   <div class="topline"><a class="back-main-btn" href="https://dashboard-monitoring-surabaya2.github.io/" title="Kembali ke Dashboard Utama">← <span>KEMBALI KE DASHBOARD UTAMA</span></a><div class="status" id="syncStatus">Menghubungkan ke Google Sheets…</div><div class="actions"><button class="secondary" id="refreshBtn">↻ Refresh</button></div></div>
   <div id="errorBox" class="error"></div>
   <section class="cards">
-    <div class="card total-card"><div class="metric-icon">▱</div><div class="metric-copy"><div class="k">TOTAL WO</div><div class="n" id="kTotal">—</div></div></div>
-    <div class="card new-card"><div class="metric-icon">▤</div><div class="metric-copy"><div class="k">NEW</div><div class="n" id="kNew">—</div></div></div>
-    <div class="card progress-card"><div class="metric-icon">⟳</div><div class="metric-copy"><div class="k">IN PROGRESS</div><div class="n" id="kProgress">—</div></div></div>
-    <div class="card unsuccessful-card"><div class="metric-icon">⊗</div><div class="metric-copy"><div class="k">UNSUCCESSFUL</div><div class="n" id="kUnsuccessful">—</div></div></div>
-    <div class="card success-card"><div class="metric-icon">✓</div><div class="metric-copy"><div class="k">SUCCESSFUL</div><div class="n" id="kSuccess">—</div></div></div>
-    <div class="card cancel-card"><div class="metric-icon">▣</div><div class="metric-copy"><div class="k">CANCEL</div><div class="n" id="kCancel">—</div></div></div>
+    <div class="card total-card" role="button" tabindex="0" data-wo-scope="all" data-wo-status="ALL" aria-label="Lihat detail Total WO"><div class="metric-icon">▱</div><div class="metric-copy"><div class="k">TOTAL WO</div><div class="n" id="kTotal">—</div></div></div>
+    <div class="card new-card" role="button" tabindex="0" data-wo-scope="all" data-wo-status="New" aria-label="Lihat detail WO New"><div class="metric-icon">▤</div><div class="metric-copy"><div class="k">NEW</div><div class="n" id="kNew">—</div></div></div>
+    <div class="card progress-card" role="button" tabindex="0" data-wo-scope="all" data-wo-status="In Progress" aria-label="Lihat detail WO In Progress"><div class="metric-icon">⟳</div><div class="metric-copy"><div class="k">IN PROGRESS</div><div class="n" id="kProgress">—</div></div></div>
+    <div class="card unsuccessful-card" role="button" tabindex="0" data-wo-scope="all" data-wo-status="Unsuccessful" aria-label="Lihat detail WO Unsuccessful"><div class="metric-icon">⊗</div><div class="metric-copy"><div class="k">UNSUCCESSFUL</div><div class="n" id="kUnsuccessful">—</div></div></div>
+    <div class="card success-card" role="button" tabindex="0" data-wo-scope="all" data-wo-status="Successful" aria-label="Lihat detail WO Successful"><div class="metric-icon">✓</div><div class="metric-copy"><div class="k">SUCCESSFUL</div><div class="n" id="kSuccess">—</div></div></div>
+    <div class="card cancel-card" role="button" tabindex="0" data-wo-scope="all" data-wo-status="Cancelled" aria-label="Lihat detail WO Cancel"><div class="metric-icon">▣</div><div class="metric-copy"><div class="k">CANCEL</div><div class="n" id="kCancel">—</div></div></div>
   </section>
   <section class="analytics-grid">
     <div class="panel composition-panel slot-summary-panel"><div class="panelhead"><h2>▦ &nbsp;INFORMASI WO PER SLOT</h2><div class="wo-report-actions"><small id="statusTodayLabel">Appointment Date</small><button type="button" class="wa-report-btn" data-report="slot"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.2A12.3 12.3 0 0 0 5.4 21.7L4 28l6.5-1.7A12.4 12.4 0 1 0 16 3.2Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M12.1 10.2c-.4-.9-.8-.9-1.2-.9h-1c-.4 0-.9.2-1.3.7-.5.5-1.7 1.7-1.7 4.1s1.7 4.8 1.9 5.1c.2.3 3.3 5.2 8.1 7.1 4 1.6 4.8 1.3 5.7 1.2.9-.1 2.9-1.2 3.3-2.4.4-1.2.4-2.2.3-2.4-.1-.2-.5-.4-1-.7s-2.9-1.4-3.3-1.6c-.4-.1-.8-.2-1.1.3-.3.5-1.3 1.6-1.6 1.9-.3.3-.6.4-1.1.1-.5-.2-2.1-.8-4-2.5-1.5-1.3-2.5-2.9-2.8-3.4-.3-.5 0-.7.2-1 .2-.2.5-.6.7-.9.2-.3.3-.5.5-.8.2-.3.1-.6 0-.9-.1-.2-1-2.5-1.4-3.4Z" fill="currentColor" transform="translate(5 2) scale(.72)"/></svg><span>Report WA</span></button></div></div>
@@ -184,9 +184,9 @@ button:focus-visible{outline:2px solid var(--mr-gold);outline-offset:3px}
     <th><button type="button" id="clearDetailFilters" class="clear-detail-filters" title="Hapus semua filter kolom">↺</button></th>
     <th><input class="column-filter" data-filter="customerId" placeholder="Filter CID…" aria-label="Filter CID (Customer ID)"></th>
     <th><input class="column-filter" data-filter="endUserName" placeholder="Filter nama…" aria-label="Filter Customer Name"></th>
-    <th><input class="column-filter" data-filter="contractorName" placeholder="Filter IKR…" aria-label="Filter IKR"></th>
+    <th><select class="column-filter" data-filter="contractorName" aria-label="Filter IKR"><option value="">Semua IKR</option></select></th>
     <th><input class="column-filter" data-filter="clusterName" placeholder="Filter cluster…" aria-label="Filter Cluster"></th>
-    <th><input class="column-filter" data-filter="asmName" placeholder="Filter ASM…" aria-label="Filter ASM"></th>
+    <th><select class="column-filter" data-filter="asmName" aria-label="Filter ASM"><option value="">Semua ASM</option></select></th>
     <th><input class="column-filter" data-filter="salesName" placeholder="Filter AE…" aria-label="Filter AE"></th>
     <th><input class="column-filter" data-filter="appointmentDate" type="date" aria-label="Filter Appointment Date"></th>
     <th><input class="column-filter" data-filter="slotTime" placeholder="Filter slot…" aria-label="Filter Slot Time"></th>
@@ -207,12 +207,13 @@ button:focus-visible{outline:2px solid var(--mr-gold);outline-offset:3px}
   <section class="wo-modal" role="dialog" aria-modal="true" aria-labelledby="woModalTitle">
     <div class="wo-modal-head"><div><h2 id="woModalTitle">DETAIL WORK ORDER</h2><p id="woModalSubtitle">Rincian data berdasarkan angka yang dipilih</p></div><button type="button" id="woModalClose" class="wo-modal-close" aria-label="Tutup">×</button></div>
     <div class="wo-modal-meta" id="woModalMeta"></div>
+    <div class="wo-modal-footer"><span id="woModalReportInfo">Detail data sesuai kartu yang dipilih</span><button type="button" id="woModalWhatsApp" class="wo-report-send">Buat Report WhatsApp ↗</button></div>
     <div class="wo-modal-table-wrap"><table class="wo-modal-table"><thead><tr><th>No</th><th>CID</th><th>Customer Name</th><th>IKR</th><th>Cluster</th><th>ASM</th><th>AE</th><th>Appointment Date</th><th>Slot Time</th><th>Status</th><th>Kategori</th></tr></thead><tbody id="woModalBody"></tbody></table></div>
   </section>
 </div>
 <script>
 const CSV_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vSgjirhiUfgrChiHVabaT0ukDbU05gKVwbj_GjJURLj2CvdXSh6LQDfknSyqNb37-Ssccg12nbfLGkn/pub?gid=1649075390&single=true&output=csv";
-const DEFAULT_BSM='BENNY HADIAWAN';let allRows=[];let sortState={key:'appointmentDate',dir:'desc'};let detailColumnFilters={};
+const DEFAULT_BSM='BENNY HADIAWAN';let allRows=[];let activeWoDetailRows=[];let activeWoDetailLabel='';let sortState={key:'appointmentDate',dir:'desc'};let detailColumnFilters={};
 const $=id=>document.getElementById(id);
 function norm(v){return String(v??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]/g,'')}
 function parseCSV(text){const out=[];let row=[],cell='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i],n=text[i+1];if(c==='"'&&quoted&&n==='"'){cell+='"';i++}else if(c==='"'){quoted=!quoted}else if(c===','&&!quoted){row.push(cell);cell=''}else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&n==='\n')i++;row.push(cell);if(row.some(x=>x!==''))out.push(row);row=[];cell=''}else cell+=c}row.push(cell);if(row.some(x=>x!==''))out.push(row);const headers=(out.shift()||[]).map(x=>x.trim().replace(/^\uFEFF/,''));return out.map(cells=>Object.fromEntries(headers.map((h,i)=>[h,(cells[i]??'').trim()])))}
@@ -301,9 +302,13 @@ $('slotSummaryBody').innerHTML=slotEntries.length?slotEntries.map(([slot,g])=>'<
 const statusTotals={New:0,'In Progress':0,Unsuccessful:0,Successful:0,Cancelled:0};slotEntries.forEach(([,g])=>Object.keys(statusTotals).forEach(k=>statusTotals[k]+=g.counts[k]));
 $('slotSummaryFoot').innerHTML=slotEntries.length?'<tr><th>TOTAL</th><th><button type="button" class="wo-click-number" data-wo-scope="all" data-wo-status="ALL">'+total.toLocaleString('id-ID')+'</button></th>'+slotStatuses.map(([key])=>'<th><button type="button" class="wo-click-number" data-wo-scope="all" data-wo-status="'+esc(key)+'">'+statusTotals[key].toLocaleString('id-ID')+'</button><br><small>'+pct(statusTotals[key],total)+'</small></th>').join('')+'</tr>':'';
 
-$('todayLabel').textContent='Mengikuti filter Appointment Date';const groups={};rows.forEach(r=>{const a=r.asmName||'ASM tidak terisi';groups[a]??={New:0,Progress:0,Unsuccessful:0,Successful:0,Cancelled:0,total:0};const status=st(r);if(status==='New')groups[a].New++;else if(status==='In Progress')groups[a].Progress++;else if(status==='Unsuccessful')groups[a].Unsuccessful++;else if(status==='Successful')groups[a].Successful++;else if(status==='Cancelled')groups[a].Cancelled++;groups[a].total++});const names=Object.keys(groups).sort((a,b)=>a.localeCompare(b,'id'));$('asmTodayBody').innerHTML=names.length?names.map((a,i)=>'<tr><td>'+(i+1)+'</td><td><b>'+esc(a)+'</b></td><td><button type="button" class="wo-click-number" data-wo-scope="asm" data-wo-asm="'+esc(a)+'" data-wo-status="ALL">'+groups[a].total+'</button></td><td><button type="button" class="wo-click-number" data-wo-scope="asm" data-wo-asm="'+esc(a)+'" data-wo-status="New">'+groups[a].New+'</button></td><td><button type="button" class="wo-click-number" data-wo-scope="asm" data-wo-asm="'+esc(a)+'" data-wo-status="In Progress">'+groups[a].Progress+'</button></td><td><button type="button" class="wo-click-number" data-wo-scope="asm" data-wo-asm="'+esc(a)+'" data-wo-status="Unsuccessful">'+groups[a].Unsuccessful+'</button></td><td><button type="button" class="wo-click-number" data-wo-scope="asm" data-wo-asm="'+esc(a)+'" data-wo-status="Successful">'+groups[a].Successful+'</button></td><td><button type="button" class="wo-click-number" data-wo-scope="asm" data-wo-asm="'+esc(a)+'" data-wo-status="Cancelled">'+groups[a].Cancelled+'</button></td></tr>').join(''):'<tr><td colspan="8" class="empty">Tidak ada WO untuk filter ini.</td></tr>';const sum=k=>Object.values(groups).reduce((v,x)=>v+x[k],0);$('asmTodayFoot').innerHTML='<tr><th colspan="2">TOTAL</th><th>'+rows.length+'</th><th>'+sum('New')+'</th><th>'+sum('Progress')+'</th><th>'+sum('Unsuccessful')+'</th><th>'+sum('Successful')+'</th><th>'+sum('Cancelled')+'</th></tr>';
+$('todayLabel').textContent='Mengikuti filter Appointment Date';const groups={};rows.forEach(r=>{const a=r.asmName||'ASM tidak terisi';groups[a]??={New:0,Progress:0,Unsuccessful:0,Successful:0,Cancelled:0,total:0};const status=st(r);if(status==='New')groups[a].New++;else if(status==='In Progress')groups[a].Progress++;else if(status==='Unsuccessful')groups[a].Unsuccessful++;else if(status==='Successful')groups[a].Successful++;else if(status==='Cancelled')groups[a].Cancelled++;groups[a].total++});const names=Object.keys(groups).sort((a,b)=>groups[b].total-groups[a].total||a.localeCompare(b,'id'));$('asmTodayBody').innerHTML=names.length?names.map((a,i)=>'<tr><td>'+(i+1)+'</td><td><b>'+esc(a)+'</b></td><td><button type="button" class="wo-click-number" data-wo-scope="asm" data-wo-asm="'+esc(a)+'" data-wo-status="ALL">'+groups[a].total+'</button></td><td><button type="button" class="wo-click-number" data-wo-scope="asm" data-wo-asm="'+esc(a)+'" data-wo-status="New">'+groups[a].New+'</button></td><td><button type="button" class="wo-click-number" data-wo-scope="asm" data-wo-asm="'+esc(a)+'" data-wo-status="In Progress">'+groups[a].Progress+'</button></td><td><button type="button" class="wo-click-number" data-wo-scope="asm" data-wo-asm="'+esc(a)+'" data-wo-status="Unsuccessful">'+groups[a].Unsuccessful+'</button></td><td><button type="button" class="wo-click-number" data-wo-scope="asm" data-wo-asm="'+esc(a)+'" data-wo-status="Successful">'+groups[a].Successful+'</button></td><td><button type="button" class="wo-click-number" data-wo-scope="asm" data-wo-asm="'+esc(a)+'" data-wo-status="Cancelled">'+groups[a].Cancelled+'</button></td></tr>').join(''):'<tr><td colspan="8" class="empty">Tidak ada WO untuk filter ini.</td></tr>';const sum=k=>Object.values(groups).reduce((v,x)=>v+x[k],0);$('asmTodayFoot').innerHTML='<tr><th colspan="2">TOTAL</th><th>'+rows.length+'</th><th>'+sum('New')+'</th><th>'+sum('Progress')+'</th><th>'+sum('Unsuccessful')+'</th><th>'+sum('Successful')+'</th><th>'+sum('Cancelled')+'</th></tr>';
 const detailRows=detailFiltered(rows);$('detailCount').textContent=detailRows.length.toLocaleString('id-ID')+' dari '+rows.length.toLocaleString('id-ID')+' data';updateSortMarks();$('detailBody').innerHTML=detailRows.length?renderSlotGroupedDetail(detailRows):'<tr><td colspan="11" class="empty">Tidak ada data sesuai filter.</td></tr>'}
 function populateAsm(){const bsm=$('bsmFilter').value,old=$('asmFilter').value;const scoped=allRows.filter(r=>!bsm||norm(r.bsmName)===bsm);const asms=[...new Set(scoped.map(r=>r.asmName).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'id'));$('asmFilter').innerHTML='<option value="">Semua ASM</option>'+asms.map(a=>'<option value="'+esc(a)+'">'+esc(a)+'</option>').join('');$('asmFilter').value=asms.includes(old)?old:''}
+function populateDetailDropdowns(){
+ const options=(key,label)=>{const el=document.querySelector('.column-filter[data-filter="'+key+'"]');if(!el)return;const old=detailColumnFilters[key]||el.value;const values=[...new Set(allRows.map(r=>String(r[key]||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'id',{numeric:true,sensitivity:'base'}));el.innerHTML='<option value="">'+label+'</option>'+values.map(v=>'<option value="'+esc(v)+'">'+esc(v)+'</option>').join('');el.value=values.includes(old)?old:'';detailColumnFilters[key]=el.value;};
+ options('contractorName','Semua IKR');options('asmName','Semua ASM');
+}
 
 function openWoDetail(trigger){
  const scope=trigger.dataset.woScope||'all',slot=trigger.dataset.woSlot||'',asm=trigger.dataset.woAsm||'',status=trigger.dataset.woStatus||'ALL';
@@ -311,18 +316,39 @@ function openWoDetail(trigger){
  if(scope==='slot')rows=rows.filter(r=>(String(r.slotTime||'Slot tidak terisi').trim()||'Slot tidak terisi')===slot);
  if(scope==='asm')rows=rows.filter(r=>(r.asmName||'ASM tidak terisi')===asm);
  if(status!=='ALL')rows=rows.filter(r=>r.appointmentStatus===status);
+ activeWoDetailRows=rows.slice();activeWoDetailLabel=(status==='ALL'?'Total WO':displayStatus(status));
  const titleParts=[];if(scope==='slot')titleParts.push('Slot Time: '+slot);if(scope==='asm')titleParts.push('ASM: '+asm);titleParts.push('Status: '+(status==='ALL'?'Semua Status':displayStatus(status)));
  $('woModalTitle').textContent='DETAIL WORK ORDER';
  $('woModalSubtitle').textContent=titleParts.join(' · ');
- $('woModalMeta').textContent=rows.length.toLocaleString('id-ID')+' data WO · mengikuti filter tanggal, BSM, ASM, dan pencarian utama';
+ $('woModalMeta').textContent=rows.length.toLocaleString('id-ID')+' data WO · mengikuti filter tanggal, BSM, ASM, dan pencarian utama';$('woModalReportInfo').textContent='Siap diekspor: '+rows.length.toLocaleString('id-ID')+' baris detail';
  $('woModalBody').innerHTML=rows.length?rows.map((r,i)=>'<tr><td>'+(i+1)+'</td><td><b>'+esc(r.customerId||'-')+'</b></td><td>'+esc(r.endUserName||'-')+'</td><td>'+esc(r.contractorName||'-')+'</td><td>'+esc(r.clusterName||'-')+'</td><td>'+esc(r.asmName||'-')+'</td><td>'+esc(r.salesName||'-')+'</td><td>'+esc(fmtDate(r.appointmentDate))+'</td><td>'+esc(r.slotTime||'-')+'</td><td><span class="pill '+statusClass(r.appointmentStatus)+'">'+esc(displayStatus(r.appointmentStatus))+'</span></td><td>'+esc(r['Status WO']||'-')+'</td></tr>').join(''):'<tr><td colspan="11" class="empty">Tidak ada detail WO untuk angka yang dipilih.</td></tr>';
  $('woDetailModal').classList.add('open');$('woDetailModal').setAttribute('aria-hidden','false');$('woModalClose').focus();
 }
+function openSelectedWoWhatsAppReport(){
+ const rows=activeWoDetailRows||[];
+ const lines=['*MONITORING WORK ORDER – MORA REPUBLIC SURABAYA 2*','*REPORT DETAIL: '+activeWoDetailLabel.toUpperCase()+'*','Periode Appointment Date: '+reportDateLabel(),'BSM: '+($('bsmFilter').value||'Semua BSM')+' | ASM: '+($('asmFilter').value||'Semua ASM'),'Total WO: '+rows.length,'', '*DETAIL WORK ORDER*'];
+ const priority={'Successful':0,'New':1,'In Progress':2,'Unsuccessful':3,'Cancelled':4};
+ const ordered=rows.slice().sort((a,b)=>(priority[a.appointmentStatus]??5)-(priority[b.appointmentStatus]??5));
+ ordered.forEach((r,i)=>{
+  lines.push((i+1)+'. *'+String(r.endUserName||'Customer tidak terisi').replace(/[\r\n]/g,' ')+'*');
+  lines.push('   CID: '+(r.customerId||'-')+' | Status: '+displayStatus(r.appointmentStatus));
+  lines.push('   IKR: '+(r.contractorName||'-')+' | Cluster: '+(r.clusterName||'-'));
+  lines.push('   ASM: '+(r.asmName||'-')+' | AE: '+(r.salesName||'-'));
+  lines.push('   Tanggal: '+fmtDate(r.appointmentDate)+' | Slot: '+(r.slotTime||'-'));
+ });
+ lines.push('','_Laporan dibuat dari Dashboard Monitoring WO_');
+ $('woReportTitle').textContent='REPORT DETAIL '+activeWoDetailLabel.toUpperCase();
+ $('woReportText').value=lines.join('\n');
+ $('woReportCharCount').textContent=$('woReportText').value.length.toLocaleString('id-ID')+' karakter';
+ $('woDetailModal').classList.remove('open');$('woDetailModal').setAttribute('aria-hidden','true');
+ $('woReportModal').classList.add('open');$('woReportModal').setAttribute('aria-hidden','false');
+}
+$('woModalWhatsApp').addEventListener('click',openSelectedWoWhatsAppReport);
 document.addEventListener('click',e=>{
  const trigger=e.target.closest('[data-wo-scope]');if(trigger){openWoDetail(trigger);return}
  if(e.target.id==='woModalClose'||e.target.id==='woDetailModal'){$('woDetailModal').classList.remove('open');$('woDetailModal').setAttribute('aria-hidden','true')}
 });
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('woDetailModal').classList.contains('open')){$('woDetailModal').classList.remove('open');$('woDetailModal').setAttribute('aria-hidden','true')}});
+document.addEventListener('keydown',e=>{const card=e.target.closest('.card[role="button"][data-wo-scope]');if(card&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openWoDetail(card);return}if(e.key==='Escape'&&$('woDetailModal').classList.contains('open')){$('woDetailModal').classList.remove('open');$('woDetailModal').setAttribute('aria-hidden','true')}});
 
 function reportDateLabel(){
  const from=$('dateFrom').value,to=$('dateTo').value;
@@ -349,7 +375,7 @@ function makeWoReport(type){
   lines.push('*RINGKASAN WO PER ASM*');
   const groups=new Map();
   rows.forEach(r=>{const a=r.asmName||'ASM tidak terisi';if(!groups.has(a))groups.set(a,[]);groups.get(a).push(r)});
-  [...groups.entries()].sort((a,b)=>a[0].localeCompare(b[0],'id')).forEach(([asm,list])=>{
+  [...groups.entries()].sort((a,b)=>b[1].length-a[1].length||a[0].localeCompare(b[0],'id')).forEach(([asm,list])=>{
    lines.push('• *'+asm+'* — Total '+list.length);
    lines.push(reportStatusCounts(list));
   });
@@ -409,7 +435,7 @@ $('woReportCopy').addEventListener('click',async()=>{try{await navigator.clipboa
 $('woReportSend').addEventListener('click',()=>{const text=$('woReportText').value.trim();if(!text)return;window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank','noopener');});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('woReportModal').classList.contains('open'))closeWoReport()});
 
-async function load(){$('syncStatus').textContent='Mengambil data Google Sheets…';$('errorBox').style.display='none';try{const res=await fetch(CSV_URL+(CSV_URL.includes('?')?'&':'?')+'_='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);allRows=parseCSV(await res.text()).filter(r=>String(r.bsmName||'').trim()!=='');if(!allRows.length)throw Error('Tidak ditemukan data BSM pada kolom bsmName');const bsms=[...new Map(allRows.map(r=>[norm(r.bsmName),r.bsmName])).entries()].sort((a,b)=>a[1].localeCompare(b[1],'id'));const oldBsm=$('bsmFilter').value;const defaultBsm=bsms.find(x=>x[0]===norm(DEFAULT_BSM));$('bsmFilter').innerHTML=bsms.map(([key,label])=>'<option value="'+esc(key)+'">'+esc(label.replace(/\s*\.$/,''))+'</option>').join('');$('bsmFilter').value=bsms.some(x=>x[0]===oldBsm)?oldBsm:(defaultBsm?defaultBsm[0]:bsms[0][0]);populateAsm();render();const selected=$('bsmFilter').selectedOptions[0]?.textContent||'BSM';$('syncStatus').textContent='LIVE · '+filtered().length.toLocaleString('id-ID')+' WO untuk '+selected+' · diperbarui '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}catch(e){$('syncStatus').textContent='Gagal memuat data';$('errorBox').textContent='Data Google Sheets tidak dapat dimuat: '+e.message;$('errorBox').style.display='block'}}
+async function load(){$('syncStatus').textContent='Mengambil data Google Sheets…';$('errorBox').style.display='none';try{const res=await fetch(CSV_URL+(CSV_URL.includes('?')?'&':'?')+'_='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);allRows=parseCSV(await res.text()).filter(r=>String(r.bsmName||'').trim()!=='');if(!allRows.length)throw Error('Tidak ditemukan data BSM pada kolom bsmName');const bsms=[...new Map(allRows.map(r=>[norm(r.bsmName),r.bsmName])).entries()].sort((a,b)=>a[1].localeCompare(b[1],'id'));const oldBsm=$('bsmFilter').value;const defaultBsm=bsms.find(x=>x[0]===norm(DEFAULT_BSM));$('bsmFilter').innerHTML=bsms.map(([key,label])=>'<option value="'+esc(key)+'">'+esc(label.replace(/\s*\.$/,''))+'</option>').join('');$('bsmFilter').value=bsms.some(x=>x[0]===oldBsm)?oldBsm:(defaultBsm?defaultBsm[0]:bsms[0][0]);populateAsm();populateDetailDropdowns();render();const selected=$('bsmFilter').selectedOptions[0]?.textContent||'BSM';$('syncStatus').textContent='LIVE · '+filtered().length.toLocaleString('id-ID')+' WO untuk '+selected+' · diperbarui '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}catch(e){$('syncStatus').textContent='Gagal memuat data';$('errorBox').textContent='Data Google Sheets tidak dapat dimuat: '+e.message;$('errorBox').style.display='block'}}
 document.querySelectorAll('th.sortable').forEach(th=>{th.setAttribute('tabindex','0');th.setAttribute('role','button');th.addEventListener('click',()=>{const key=th.dataset.sort;if(sortState.key===key)sortState.dir=sortState.dir==='asc'?'desc':'asc';else{sortState.key=key;sortState.dir='asc'}render()});th.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();th.click()}})});
 $('bsmFilter').addEventListener('change',()=>{populateAsm();render();const selected=$('bsmFilter').selectedOptions[0]?.textContent||'BSM';$('syncStatus').textContent='LIVE · '+filtered().length.toLocaleString('id-ID')+' WO untuk '+selected});$('asmFilter').addEventListener('change',render);$('searchInput').addEventListener('input',render);$('dateFrom').addEventListener('change',render);$('dateTo').addEventListener('change',render);
 // Default Appointment Date range: today through today (local browser date).
