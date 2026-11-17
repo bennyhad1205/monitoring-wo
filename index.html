@@ -370,7 +370,7 @@ function makeWoReport(type){
    lines.push('');
    lines.push('━━━━━━━━━━━━━━━━━━');
    lines.push('*🕒 SLOT '+slot+'*');
-   lines.push('*Total WO Slot: '+slotRows.length+'*');
+   lines.push('*Total WO: '+slotRows.length+'*');
    lines.push('━━━━━━━━━━━━━━━━━━');
    [...aeGroups.entries()].sort((a,b)=>a[0].localeCompare(b[0],'id',{sensitivity:'base'})).forEach(([ae,items])=>{
     lines.push('');
