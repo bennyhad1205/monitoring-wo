@@ -82,6 +82,27 @@ button:focus-visible{outline:2px solid var(--mr-gold);outline-offset:3px}
 
 
 
+
+/* WhatsApp report preview and editing */
+.wo-report-actions{display:flex;align-items:center;gap:12px}
+.wa-report-btn{padding:7px 11px;border:1px solid #b98c4c;border-radius:8px;background:linear-gradient(135deg,#39202a,#171219);color:#f5d98e;font-size:11px;font-weight:900;white-space:nowrap;cursor:pointer}
+.wa-report-btn:hover{filter:brightness(1.2)}
+.wo-report-backdrop{display:none;position:fixed;inset:0;z-index:10010;background:#030407e8;backdrop-filter:blur(6px);padding:3vh 2vw;align-items:center;justify-content:center}
+.wo-report-backdrop.open{display:flex}
+.wo-report-modal{width:min(850px,96vw);max-height:94vh;display:flex;flex-direction:column;background:linear-gradient(145deg,#191c25,#0b0d12);border:1px solid #bd8d3d;border-radius:16px;box-shadow:0 22px 70px #000c;overflow:hidden}
+.wo-report-head{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 20px;background:linear-gradient(100deg,#45121e,#17131a);border-bottom:1px solid #bd8d3d66}
+.wo-report-head h2{margin:0;color:#f6dfa2;font-size:18px}.wo-report-head p{margin:5px 0 0;color:#c7c2c8;font-size:12px}
+.wo-report-close{width:36px;height:36px;border:1px solid #9e5360;border-radius:9px;background:#35131e;color:#fff;font-size:26px;cursor:pointer}
+.wo-report-hint{padding:11px 18px;color:#e9d39a;font-size:11px;background:#211923;border-bottom:1px solid #ffffff12}
+#woReportText{display:block;flex:1;min-height:300px;max-height:62vh;resize:vertical;margin:14px 16px;padding:14px;border:1px solid #65505a;border-radius:10px;background:#090c12;color:#f2f2f4;font:13px/1.55 Arial,sans-serif;white-space:pre-wrap}
+#woReportText:focus{outline:none;border-color:#e8c56b;box-shadow:0 0 0 3px #e8c56b22}
+.wo-report-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 16px 15px;color:#aeb0b9;font-size:11px}
+.wo-report-footer>div{display:flex;gap:9px}
+.wo-report-secondary,.wo-report-send{padding:10px 14px;border-radius:9px;font-size:12px;font-weight:900;cursor:pointer}
+.wo-report-secondary{border:1px solid #78616a;background:#22212a;color:#eee}
+.wo-report-send{border:1px solid #168d55;background:linear-gradient(135deg,#168d55,#075c39);color:white}
+@media(max-width:700px){.wo-report-actions{gap:7px;flex-wrap:wrap;justify-content:flex-end}.wo-report-actions small{font-size:9px}.wa-report-btn{font-size:10px;padding:6px 8px}.wo-report-backdrop{padding:8px}.wo-report-modal{width:100%;max-height:96vh}.wo-report-head{padding:13px}.wo-report-head h2{font-size:15px}#woReportText{min-height:260px;max-height:60vh;margin:10px;padding:11px}.wo-report-footer{padding:0 10px 12px;align-items:flex-start;flex-direction:column}.wo-report-footer>div{width:100%}.wo-report-footer button{flex:1}}
+
 /* Clickable summary figures and detail popup */
 .wo-click-number{appearance:none;-webkit-appearance:none;display:inline;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:inherit!important;font:inherit!important;font-weight:inherit!important;line-height:inherit;min-width:0!important;min-height:0!important;height:auto!important;cursor:pointer!important;text-decoration:none!important;vertical-align:baseline}
 .wo-click-number:hover{color:#f6dfa2!important;text-decoration:underline!important;text-decoration-color:#e8c56b!important;text-underline-offset:3px;filter:none!important;transform:none!important}
@@ -148,14 +169,14 @@ button:focus-visible{outline:2px solid var(--mr-gold);outline-offset:3px}
     <div class="card cancel-card"><div class="metric-icon">▣</div><div class="metric-copy"><div class="k">CANCEL</div><div class="n" id="kCancel">—</div></div></div>
   </section>
   <section class="analytics-grid">
-    <div class="panel composition-panel slot-summary-panel"><div class="panelhead"><h2>▦ &nbsp;INFORMASI WO PER SLOT</h2><small id="statusTodayLabel">Appointment Date</small></div>
+    <div class="panel composition-panel slot-summary-panel"><div class="panelhead"><h2>▦ &nbsp;INFORMASI WO PER SLOT</h2><div class="wo-report-actions"><small id="statusTodayLabel">Appointment Date</small><button type="button" class="wa-report-btn" data-report="slot">↗ Report WA</button></div></div>
       <div class="tablewrap slot-summary-wrap"><table class="slot-summary-table"><thead><tr>
         <th>Slot Time</th><th>Total WO</th><th>New</th><th>In Progress</th><th>Unsuccessful</th><th>Successful</th><th>Cancel</th>
       </tr></thead><tbody id="slotSummaryBody"><tr><td colspan="7" class="empty">Memuat data…</td></tr></tbody><tfoot id="slotSummaryFoot"></tfoot></table></div>
     </div>
-    <div class="panel asm-panel"><div class="panelhead"><h2>♟ &nbsp;WO PER ASM</h2><small id="todayLabel">Mengikuti filter Appointment Date</small></div><div class="tablewrap"><table class="asm-table"><thead><tr><th>No</th><th>ASM</th><th>Total WO</th><th>New</th><th>In Progress</th><th>Unsuccessful</th><th>Successfully</th><th>Cancel</th></tr></thead><tbody id="asmTodayBody"><tr><td colspan="8" class="empty">Memuat data…</td></tr></tbody><tfoot id="asmTodayFoot"></tfoot></table></div></div>
+    <div class="panel asm-panel"><div class="panelhead"><h2>♟ &nbsp;WO PER ASM</h2><div class="wo-report-actions"><small id="todayLabel">Mengikuti filter Appointment Date</small><button type="button" class="wa-report-btn" data-report="asm">↗ Report WA</button></div></div><div class="tablewrap"><table class="asm-table"><thead><tr><th>No</th><th>ASM</th><th>Total WO</th><th>New</th><th>In Progress</th><th>Unsuccessful</th><th>Successfully</th><th>Cancel</th></tr></thead><tbody id="asmTodayBody"><tr><td colspan="8" class="empty">Memuat data…</td></tr></tbody><tfoot id="asmTodayFoot"></tfoot></table></div></div>
   </section>
-  <section class="panel detail-panel"><div class="panelhead"><h2>▰ &nbsp;DETAIL WORK ORDER</h2><small id="detailCount">0 data</small></div><div class="tablewrap"><table class="detail-table"><thead><tr>
+  <section class="panel detail-panel"><div class="panelhead"><h2>▰ &nbsp;DETAIL WORK ORDER</h2><div class="wo-report-actions"><small id="detailCount">0 data</small><button type="button" class="wa-report-btn" data-report="detail">↗ Report WA</button></div></div><div class="tablewrap"><table class="detail-table"><thead><tr>
     <th>No</th><th class="sortable" data-sort="customerId">CID (Customer ID) <span class="sortmark"></span></th><th class="sortable" data-sort="endUserName">Customer Name <span class="sortmark"></span></th><th class="sortable" data-sort="contractorName">IKR <span class="sortmark"></span></th><th class="sortable" data-sort="clusterName">Cluster <span class="sortmark"></span></th><th class="sortable" data-sort="asmName">ASM <span class="sortmark"></span></th><th class="sortable" data-sort="salesName">AE <span class="sortmark"></span></th><th class="sortable" data-sort="appointmentDate">Appointment Date <span class="sortmark"></span></th><th class="sortable" data-sort="slotTime">Slot Time <span class="sortmark"></span></th><th class="sortable" data-sort="appointmentStatus">Status <span class="sortmark"></span></th><th class="sortable" data-sort="Status WO">Kategori <span class="sortmark"></span></th>
   </tr>
   <tr class="detail-filter-row">
@@ -173,6 +194,14 @@ button:focus-visible{outline:2px solid var(--mr-gold);outline-offset:3px}
   </tr></thead><tbody id="detailBody"><tr><td colspan="11" class="empty">Memuat data…</td></tr></tbody></table></div></section>
   <p class="note">Sumber: Google Sheets (CSV live), otomatis diperbarui setiap 1 menit. Status In Progress dan Unsuccessful dihitung terpisah sesuai data sumber.</p>
 </main>
+<div class="wo-report-backdrop" id="woReportModal" aria-hidden="true">
+  <section class="wo-report-modal" role="dialog" aria-modal="true" aria-labelledby="woReportTitle">
+    <div class="wo-report-head"><div><h2 id="woReportTitle">REPORT MONITORING WO</h2><p>Periksa dan edit isi laporan sebelum dibagikan ke grup WhatsApp</p></div><button type="button" id="woReportClose" class="wo-report-close" aria-label="Tutup">×</button></div>
+    <div class="wo-report-hint">Isi laporan dapat diedit. Saat memilih Kirim ke WhatsApp, WhatsApp akan terbuka agar kamu dapat memilih grup tujuan.</div>
+    <textarea id="woReportText" spellcheck="false" aria-label="Isi report WhatsApp"></textarea>
+    <div class="wo-report-footer"><span id="woReportCharCount">0 karakter</span><div><button type="button" class="wo-report-secondary" id="woReportCopy">Salin Laporan</button><button type="button" class="wo-report-send" id="woReportSend">Kirim ke WhatsApp ↗</button></div></div>
+  </section>
+</div>
 <div class="wo-modal-backdrop" id="woDetailModal" aria-hidden="true">
   <section class="wo-modal" role="dialog" aria-modal="true" aria-labelledby="woModalTitle">
     <div class="wo-modal-head"><div><h2 id="woModalTitle">DETAIL WORK ORDER</h2><p id="woModalSubtitle">Rincian data berdasarkan angka yang dipilih</p></div><button type="button" id="woModalClose" class="wo-modal-close" aria-label="Tutup">×</button></div>
@@ -293,6 +322,62 @@ document.addEventListener('click',e=>{
  if(e.target.id==='woModalClose'||e.target.id==='woDetailModal'){$('woDetailModal').classList.remove('open');$('woDetailModal').setAttribute('aria-hidden','true')}
 });
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('woDetailModal').classList.contains('open')){$('woDetailModal').classList.remove('open');$('woDetailModal').setAttribute('aria-hidden','true')}});
+
+function reportDateLabel(){
+ const from=$('dateFrom').value,to=$('dateTo').value;
+ const fmt=v=>{if(!v)return '';const d=new Date(v+'T00:00:00');return d.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'});};
+ return from||to?(from?fmt(from):'Awal')+' s.d. '+(to?fmt(to):'Terbaru'):'Semua tanggal';
+}
+function reportStatusCounts(rows){
+ const keys=[['New','New'],['In Progress','In Progress'],['Unsuccessful','Unsuccessful'],['Successful','Successful'],['Cancelled','Cancel']];
+ return keys.map(([key,label])=>label+': '+rows.filter(r=>r.appointmentStatus===key).length).join(' | ');
+}
+function makeWoReport(type){
+ const rows=filtered();
+ const bsm=$('bsmFilter').value||'Semua BSM',asmFilter=$('asmFilter').value||'Semua ASM';
+ const lines=['*MONITORING WORK ORDER – MORA REPUBLIC SURABAYA 2*','Periode Appointment Date: '+reportDateLabel(),'BSM: '+bsm+' | Filter ASM: '+asmFilter,'Total WO: '+rows.length,reportStatusCounts(rows),''];
+ if(type==='slot'){
+  lines.push('*RINGKASAN WO PER SLOT*');
+  const groups=new Map();
+  rows.forEach(r=>{const s=String(r.slotTime||'Slot tidak terisi').trim()||'Slot tidak terisi';if(!groups.has(s))groups.set(s,[]);groups.get(s).push(r)});
+  [...groups.entries()].sort((a,b)=>a[0].localeCompare(b[0],'id',{numeric:true})).forEach(([slot,list])=>{
+   lines.push('• *'+slot+'* — Total '+list.length);
+   lines.push(reportStatusCounts(list));
+  });
+ }else if(type==='asm'){
+  lines.push('*RINGKASAN WO PER ASM*');
+  const groups=new Map();
+  rows.forEach(r=>{const a=r.asmName||'ASM tidak terisi';if(!groups.has(a))groups.set(a,[]);groups.get(a).push(r)});
+  [...groups.entries()].sort((a,b)=>a[0].localeCompare(b[0],'id')).forEach(([asm,list])=>{
+   lines.push('• *'+asm+'* — Total '+list.length);
+   lines.push(reportStatusCounts(list));
+  });
+ }else{
+  lines.push('*DETAIL WORK ORDER*');
+  lines.push('No | CID | Customer | IKR | Cluster | ASM | AE | Tanggal | Slot | Status | Kategori');
+  rows.forEach((r,i)=>lines.push([i+1,r.customerId,r.endUserName,r.contractorName,r.clusterName,r.asmName,r.salesName,fmtDate(r.appointmentDate),r.slotTime,displayStatus(r.appointmentStatus),r['Status WO']].map(v=>String(v||'-').replace(/[|\r\n]/g,' ')).join(' | ')));
+ }
+ lines.push('','_Laporan dibuat dari Dashboard Monitoring WO_');
+ return lines.join('\n');
+}
+function openWoReport(type){
+ const labels={slot:'REPORT WO PER SLOT',asm:'REPORT WO PER ASM',detail:'REPORT DETAIL WORK ORDER'};
+ $('woReportTitle').textContent=labels[type]||'REPORT MONITORING WO';
+ $('woReportText').value=makeWoReport(type);
+ $('woReportCharCount').textContent=$('woReportText').value.length.toLocaleString('id-ID')+' karakter';
+ $('woReportModal').classList.add('open');$('woReportModal').setAttribute('aria-hidden','false');$('woReportText').focus();
+}
+function closeWoReport(){$('woReportModal').classList.remove('open');$('woReportModal').setAttribute('aria-hidden','true')}
+document.addEventListener('click',e=>{
+ const reportBtn=e.target.closest('[data-report]');
+ if(reportBtn){openWoReport(reportBtn.dataset.report);return}
+ if(e.target.id==='woReportClose'||e.target.id==='woReportModal')closeWoReport();
+});
+$('woReportText').addEventListener('input',()=>$('woReportCharCount').textContent=$('woReportText').value.length.toLocaleString('id-ID')+' karakter');
+$('woReportCopy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('woReportText').value);$('woReportCopy').textContent='Tersalin ✓';setTimeout(()=>$('woReportCopy').textContent='Salin Laporan',1800)}catch(e){$('woReportText').focus();$('woReportText').select();document.execCommand('copy');$('woReportCopy').textContent='Tersalin ✓'}});
+$('woReportSend').addEventListener('click',()=>{const text=$('woReportText').value.trim();if(!text)return;window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank','noopener');});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('woReportModal').classList.contains('open'))closeWoReport()});
+
 async function load(){$('syncStatus').textContent='Mengambil data Google Sheets…';$('errorBox').style.display='none';try{const res=await fetch(CSV_URL+(CSV_URL.includes('?')?'&':'?')+'_='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);allRows=parseCSV(await res.text()).filter(r=>String(r.bsmName||'').trim()!=='');if(!allRows.length)throw Error('Tidak ditemukan data BSM pada kolom bsmName');const bsms=[...new Map(allRows.map(r=>[norm(r.bsmName),r.bsmName])).entries()].sort((a,b)=>a[1].localeCompare(b[1],'id'));const oldBsm=$('bsmFilter').value;const defaultBsm=bsms.find(x=>x[0]===norm(DEFAULT_BSM));$('bsmFilter').innerHTML=bsms.map(([key,label])=>'<option value="'+esc(key)+'">'+esc(label.replace(/\s*\.$/,''))+'</option>').join('');$('bsmFilter').value=bsms.some(x=>x[0]===oldBsm)?oldBsm:(defaultBsm?defaultBsm[0]:bsms[0][0]);populateAsm();render();const selected=$('bsmFilter').selectedOptions[0]?.textContent||'BSM';$('syncStatus').textContent='LIVE · '+filtered().length.toLocaleString('id-ID')+' WO untuk '+selected+' · diperbarui '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}catch(e){$('syncStatus').textContent='Gagal memuat data';$('errorBox').textContent='Data Google Sheets tidak dapat dimuat: '+e.message;$('errorBox').style.display='block'}}
 document.querySelectorAll('th.sortable').forEach(th=>{th.setAttribute('tabindex','0');th.setAttribute('role','button');th.addEventListener('click',()=>{const key=th.dataset.sort;if(sortState.key===key)sortState.dir=sortState.dir==='asc'?'desc':'asc';else{sortState.key=key;sortState.dir='asc'}render()});th.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();th.click()}})});
 $('bsmFilter').addEventListener('change',()=>{populateAsm();render();const selected=$('bsmFilter').selectedOptions[0]?.textContent||'BSM';$('syncStatus').textContent='LIVE · '+filtered().length.toLocaleString('id-ID')+' WO untuk '+selected});$('asmFilter').addEventListener('change',render);$('searchInput').addEventListener('input',render);$('dateFrom').addEventListener('change',render);$('dateTo').addEventListener('change',render);
